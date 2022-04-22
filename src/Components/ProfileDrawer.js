@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Drawer } from "@mantine/core";
 import "../styles/Drawer.css";
 import { Settings, User, Logout } from "tabler-icons-react";
+import { UserContext } from "../context/User";
+import { LogoutUser } from "../functions/Logout";
 const ProfileDrawer = () => {
   const [opened, setOpened] = useState(false);
+  const { UserInfo, setUserInfo } = useContext(UserContext);
   return (
     <>
       <Drawer
@@ -14,11 +17,8 @@ const ProfileDrawer = () => {
         size="md"
       >
         <div className="profile">
-          <img
-            src="https://res.cloudinary.com/dwzjfylgh/image/upload/v1648215217/dd23namcxikmc35qewa2.jpg"
-            alt=""
-          />
-          <p>katoph</p>
+          <img src={UserInfo.image} alt="" />
+          <p>{UserInfo.userName}</p>
         </div>
         <div className="menu">
           <div className="menuItem">
@@ -29,7 +29,7 @@ const ProfileDrawer = () => {
             <Settings size={26} />
             <p>Settings</p>
           </div>
-          <div className="menuItem">
+          <div onClick={() => LogoutUser(setUserInfo)} className="menuItem">
             <Logout size={26} />
             <p>Logout</p>
           </div>
@@ -39,7 +39,7 @@ const ProfileDrawer = () => {
         onClick={() => setOpened(true)}
         loading="lazy"
         className="profileimg"
-        src="https://res.cloudinary.com/dwzjfylgh/image/upload/v1648215217/dd23namcxikmc35qewa2.jpg"
+        src={UserInfo.image}
         alt=""
       />
     </>

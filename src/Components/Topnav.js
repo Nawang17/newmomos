@@ -2,7 +2,27 @@ import React from "react";
 import "../styles/Topnav.css";
 import { Motorbike } from "tabler-icons-react";
 import ProfileDrawer from "./ProfileDrawer";
+import { UserContext } from "../context/User";
+import axios from "axios";
 const Topnav = () => {
+  const { UserInfo, setUserInfo } = React.useContext(UserContext);
+  const demoLogin = () => {
+    axios
+      .post("https://momofirstapi.herokuapp.com/LoginUsers/login", {
+        Username: "Demo",
+        Password: "Demo",
+      })
+      .then((res) => {
+        setUserInfo({
+          userName: res.data.Username,
+          image: res.data.Image,
+          loginStatus: true,
+          accessToken: res.data.token,
+          verified: res.data.verified,
+        });
+        localStorage.setItem("accessToken", res.data.token);
+      });
+  };
   return (
     <div className="topnav">
       <div className="logo">
@@ -10,7 +30,17 @@ const Topnav = () => {
         <p>momos</p>
       </div>
       <div className="topnavright">
-        <ProfileDrawer />
+        {UserInfo.loginStatus ? (
+          <ProfileDrawer />
+        ) : (
+          <div
+            onClick={() => {
+              demoLogin();
+            }}
+          >
+            Login
+          </div>
+        )}
       </div>
     </div>
   );

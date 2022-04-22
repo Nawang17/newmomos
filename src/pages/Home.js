@@ -1,9 +1,11 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Posts from "../Components/Posts";
 import "../styles/Home.css";
 import { loadMoreposts } from "../functions/loadMoreposts";
+import { UserContext } from "../context/User";
 const Home = () => {
+  const { UserInfo } = useContext(UserContext);
   const [loading, setloading] = useState(false);
   const [posts, setPosts] = useState([]);
   const [pageCount, setPageCount] = useState(0);
@@ -14,8 +16,7 @@ const Home = () => {
     axios
       .get("https://momofirstapi.herokuapp.com/Post/getPosts?page=0", {
         headers: {
-          accessToken:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VybmFtZSI6IkRlbW8iLCJpZCI6MCwiSW1hZ2UiOiJodHRwczovL3Jlcy5jbG91ZGluYXJ5LmNvbS9kd3pqZnlsZ2gvaW1hZ2UvdXBsb2FkL3YxNjQ2ODc5NDcyL2htNG01a29zdjdocGpydjdhZHlvLnBuZyIsInZlcmlmaWVkIjpmYWxzZSwiaWF0IjoxNjUwNjUxNDA4LCJleHAiOjE2NTA2NTUwMDh9.yYFWV0gJvzDXxm6CW9Ud9ZVQz0uPha2Lo2V0sjJMNA0",
+          accessToken: UserInfo.accessToken,
         },
       })
       .then((res) => {
@@ -25,7 +26,7 @@ const Home = () => {
         setloading(false);
       })
       .catch((err) => alert(err));
-  }, []);
+  }, [UserInfo]);
 
   return (
     <>
