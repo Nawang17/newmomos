@@ -35,13 +35,14 @@ const ProfileDrawer = () => {
           </div>
         </div>
       </Drawer>
-      <img
-        onClick={() => setOpened(true)}
-        loading="lazy"
-        className="profileimg"
-        src={UserInfo.image}
-        alt=""
-      />
+      <div onClick={() => setOpened(true)} style={{ padding: "0px 10px" }}>
+        <img
+          loading="lazy"
+          className="profileimg"
+          src={UserInfo.image}
+          alt=""
+        />
+      </div>
     </>
   );
 };

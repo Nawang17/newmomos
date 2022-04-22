@@ -80,7 +80,12 @@ const Login = () => {
           <Button onClick={() => handlesumbit()}>Login</Button>
         </div>
       </Modal>
-      <div onClick={() => setOpened(true)}>Login</div>
+      <div
+        style={{ fontSize: "18px", color: "#1DA1F2" }}
+        onClick={() => setOpened(true)}
+      >
+        Login
+      </div>
     </>
   );
 };

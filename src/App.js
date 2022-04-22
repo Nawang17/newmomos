@@ -13,6 +13,7 @@ function App() {
     accessToken: "",
     verified: false,
   });
+  const [path, setpath] = useState("momos");
   useEffect(() => {
     axios
       .get("https://momofirstapi.herokuapp.com/authenticate/validUser", {
@@ -43,7 +44,7 @@ function App() {
   }, []);
   return (
     <div className="App">
-      <UserContext.Provider value={{ UserInfo, setUserInfo }}>
+      <UserContext.Provider value={{ UserInfo, setUserInfo, path, setpath }}>
         <Topnav />
         <Home />
         {UserInfo.loginStatus && <Bottomnav />}

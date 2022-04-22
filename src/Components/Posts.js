@@ -2,8 +2,8 @@ import React from "react";
 import { Heart, Message2 } from "tabler-icons-react";
 import "../styles/Posts.css";
 import PostMenu from "./PostMenu";
-
-const Posts = ({ posts, LikedPosts }) => {
+import { LikePost } from "../functions/LikePost";
+const Posts = ({ posts, LikedPosts, setPosts, setLikePosts }) => {
   return (
     <>
       {posts.map((value) => {
@@ -43,6 +43,16 @@ const Posts = ({ posts, LikedPosts }) => {
               )}
               <div className="postInsight">
                 <div
+                  onClick={() =>
+                    LikePost(
+                      value.id,
+                      value.Username,
+                      LikedPosts,
+                      posts,
+                      setPosts,
+                      setLikePosts
+                    )
+                  }
                   className={
                     LikedPosts.includes(value.id) ? "LikesActive" : "Likes"
                   }

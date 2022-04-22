@@ -34,7 +34,9 @@ const Home = () => {
         <div className="Home">
           <Posts
             posts={posts}
+            setPosts={setPosts}
             postResultsCount={postResultsCount}
+            setLikePosts={setLikePosts}
             LikedPosts={LikedPosts}
             loading={loading}
           />
