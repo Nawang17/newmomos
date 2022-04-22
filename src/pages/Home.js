@@ -16,7 +16,7 @@ const Home = () => {
     axios
       .get("https://momofirstapi.herokuapp.com/Post/getPosts?page=0", {
         headers: {
-          accessToken: UserInfo.accessToken,
+          accessToken: localStorage.getItem("accessToken"),
         },
       })
       .then((res) => {

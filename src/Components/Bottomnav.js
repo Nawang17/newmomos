@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Bell,
-  Heart,
-  Home,
-  Menu,
-  MessageCircle2,
-  Plus,
-} from "tabler-icons-react";
+import { Bell, Home, Menu, MessageCircle2, Plus } from "tabler-icons-react";
 import "../styles/Bottomnav.css";
 const Bottomnav = () => {
   return (

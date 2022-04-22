@@ -4,6 +4,7 @@ import { Motorbike } from "tabler-icons-react";
 import ProfileDrawer from "./ProfileDrawer";
 import { UserContext } from "../context/User";
 import axios from "axios";
+import Login from "./Login";
 const Topnav = () => {
   const { UserInfo, setUserInfo } = React.useContext(UserContext);
   const demoLogin = () => {
@@ -30,17 +31,7 @@ const Topnav = () => {
         <p>momos</p>
       </div>
       <div className="topnavright">
-        {UserInfo.loginStatus ? (
-          <ProfileDrawer />
-        ) : (
-          <div
-            onClick={() => {
-              demoLogin();
-            }}
-          >
-            Login
-          </div>
-        )}
+        {UserInfo.loginStatus ? <ProfileDrawer /> : <Login />}
       </div>
     </div>
   );

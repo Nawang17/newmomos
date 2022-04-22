@@ -46,7 +46,7 @@ function App() {
       <UserContext.Provider value={{ UserInfo, setUserInfo }}>
         <Topnav />
         <Home />
-        <Bottomnav />
+        {UserInfo.loginStatus && <Bottomnav />}
       </UserContext.Provider>
     </div>
   );
