@@ -1,16 +1,16 @@
 import React from "react";
 import "../styles/Topnav.css";
+import { Motorbike } from "tabler-icons-react";
+import ProfileDrawer from "./ProfileDrawer";
 const Topnav = () => {
   return (
     <div className="topnav">
-      <div className="logo">momos</div>
+      <div className="logo">
+        <Motorbike size={26} />
+        <p>momos</p>
+      </div>
       <div className="topnavright">
-        <img
-          loading="lazy"
-          className="profileimg"
-          src="https://res.cloudinary.com/dwzjfylgh/image/upload/v1648215217/dd23namcxikmc35qewa2.jpg"
-          alt=""
-        />
+        <ProfileDrawer />
       </div>
     </div>
   );

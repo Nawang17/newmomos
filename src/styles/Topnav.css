@@ -14,8 +14,13 @@
 .logo {
   font-weight: bold;
   font-size: 19px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #14171a;
 }
 .topnavright {
+  font-size: 15px;
 }
 .profileimg {
   height: 30px;

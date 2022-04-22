@@ -2,7 +2,7 @@
   background-color: rgb(255, 255, 255);
   display: flex;
   gap: 9px;
-  padding: 15px;
+  padding: 15px 18px;
   border-bottom: 1px solid #e1e8ed;
   font-size: 15px;
 }
@@ -53,13 +53,13 @@
 }
 .Likes {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   color: #41596f;
   gap: 5px;
 }
 .LikesActive {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   color: red;
   gap: 5px;
 }

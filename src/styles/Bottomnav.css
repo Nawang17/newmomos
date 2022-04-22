@@ -7,10 +7,14 @@
   width: 100%;
   padding: 16px 25px;
   border-top: 1px solid #e1e8ed;
+  color: #14171a;
 }
 .navItems {
   display: flex;
   justify-content: space-between;
 }
 .navItem {
+}
+.navItem:hover {
+  color: rgb(83, 76, 76);
 }

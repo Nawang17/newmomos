@@ -2,6 +2,7 @@ import React from "react";
 import { Heart, Message2 } from "tabler-icons-react";
 import "../styles/Posts.css";
 import PostMenu from "./PostMenu";
+
 const Posts = ({ posts, LikedPosts }) => {
   return (
     <>
@@ -19,7 +20,9 @@ const Posts = ({ posts, LikedPosts }) => {
             <div className="right">
               <div className="header">
                 <div className="headerLeft">
-                  <div className="username">{value.Username}</div>
+                  <div className="username">
+                    <p>{value.Username}</p>
+                  </div>
                   <div className="date">4/22/2022</div>
                 </div>
                 <div className="headerRight">

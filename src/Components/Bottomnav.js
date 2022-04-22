@@ -1,5 +1,12 @@
 import React from "react";
-import { Heart, Home, Menu, MessageCircle2, Plus } from "tabler-icons-react";
+import {
+  Bell,
+  Heart,
+  Home,
+  Menu,
+  MessageCircle2,
+  Plus,
+} from "tabler-icons-react";
 import "../styles/Bottomnav.css";
 const Bottomnav = () => {
   return (
@@ -15,7 +22,7 @@ const Bottomnav = () => {
           <Plus size={26} />
         </div>
         <div className="navItem">
-          <Heart size={26} />
+          <Bell size={26} />
         </div>
         <div className="navItem">
           <Menu size={26} />

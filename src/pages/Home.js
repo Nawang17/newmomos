@@ -14,7 +14,8 @@ const Home = () => {
     axios
       .get("https://momofirstapi.herokuapp.com/Post/getPosts?page=0", {
         headers: {
-          accessToken: localStorage.getItem("accessToken"),
+          accessToken:
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VybmFtZSI6IkRlbW8iLCJpZCI6MCwiSW1hZ2UiOiJodHRwczovL3Jlcy5jbG91ZGluYXJ5LmNvbS9kd3pqZnlsZ2gvaW1hZ2UvdXBsb2FkL3YxNjQ2ODc5NDcyL2htNG01a29zdjdocGpydjdhZHlvLnBuZyIsInZlcmlmaWVkIjpmYWxzZSwiaWF0IjoxNjUwNjUxNDA4LCJleHAiOjE2NTA2NTUwMDh9.yYFWV0gJvzDXxm6CW9Ud9ZVQz0uPha2Lo2V0sjJMNA0",
         },
       })
       .then((res) => {
@@ -34,6 +35,7 @@ const Home = () => {
             posts={posts}
             postResultsCount={postResultsCount}
             LikedPosts={LikedPosts}
+            loading={loading}
           />
           {posts.length < postResultsCount && (
             <div
