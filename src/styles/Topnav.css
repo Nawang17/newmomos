@@ -1,0 +1,24 @@
+.topnav {
+  background-color: rgb(255, 255, 255);
+  overflow: hidden;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  border-bottom: 1px solid #e1e8ed;
+}
+.logo {
+  font-weight: bold;
+  font-size: 19px;
+}
+.topnavright {
+}
+.profileimg {
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+}

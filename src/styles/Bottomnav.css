@@ -1,0 +1,16 @@
+.Bottomnav {
+  background-color: white;
+  overflow: hidden;
+  position: fixed;
+  z-index: 1;
+  bottom: 0;
+  width: 100%;
+  padding: 16px 25px;
+  border-top: 1px solid #e1e8ed;
+}
+.navItems {
+  display: flex;
+  justify-content: space-between;
+}
+.navItem {
+}

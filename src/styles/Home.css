@@ -1,0 +1,12 @@
+.Home {
+  background-color: rgb(255, 255, 255);
+  margin-top: 60px;
+  margin-bottom: 63px;
+}
+.loadMore {
+  text-align: center;
+  color: rgb(6, 84, 149);
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px 0;
+}
