@@ -2,8 +2,9 @@
   background-color: rgb(255, 255, 255);
   display: flex;
   gap: 9px;
-  padding: 10px;
-  border-bottom: 1px solid #aab8c2;
+  padding: 15px;
+  border-bottom: 1px solid #e1e8ed;
+  font-size: 15px;
 }
 .left {
 }
@@ -47,7 +48,7 @@
 .postInsight {
   display: flex;
   gap: 20px;
-  padding: 7px 0 0px 0px;
+  padding: 10px 0 5px 0px;
   color: #41596f;
 }
 .Likes {
