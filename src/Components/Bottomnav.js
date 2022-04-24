@@ -1,11 +1,18 @@
 import React from "react";
 import { Bell, Home, Menu, MessageCircle2, Plus } from "tabler-icons-react";
 import "../styles/Bottomnav.css";
+import { useHistory } from "react-router-dom";
 const Bottomnav = () => {
+  const history = useHistory();
   return (
     <div className="Bottomnav">
       <div className="navItems">
-        <div className="navItem">
+        <div
+          onClick={() => {
+            history.push("/");
+          }}
+          className="navItem"
+        >
           <Home size={26} />
         </div>
         <div className="navItem">

@@ -1,45 +1,37 @@
-import axios from "axios";
+import { LikePosts } from "../apiEndpoints/apiEndpoints";
 export const LikePost = (
   postid,
   postUser,
   LikedPosts,
   posts,
   setPosts,
-  setLikePosts
+  setLikePosts,
+  loginStatus
 ) => {
-  axios
-    .post(
-      "https://momofirstapi.herokuapp.com/Like/likePost",
-      {
-        PostId: postid,
-        postUserId: postUser,
-      },
-      {
-        headers: {
-          accessToken: localStorage.getItem("accessToken"),
-        },
-      }
-    )
-    .then((res) => {
-      setPosts(
-        posts.map((post) => {
-          if (post.id === postid) {
-            if (res.data.liked) {
-              return { ...post, Likes: [...post.Likes, 0] };
-            } else {
-              const likeArray = post.Likes;
-              likeArray.pop();
-              return { ...post, Likes: likeArray };
-            }
+  loginStatus
+    ? LikePosts(postid, postUser)
+        .then((res) => {
+          setPosts(
+            posts.map((post) => {
+              if (post.id === postid) {
+                if (res.data.liked) {
+                  return { ...post, Likes: [...post.Likes, 0] };
+                } else {
+                  const likeArray = post.Likes;
+                  likeArray.pop();
+                  return { ...post, Likes: likeArray };
+                }
+              } else {
+                return post;
+              }
+            })
+          );
+          if (LikedPosts.includes(postid)) {
+            setLikePosts(LikedPosts.filter((id) => id !== postid));
           } else {
-            return post;
+            setLikePosts([...LikedPosts, postid]);
           }
         })
-      );
-      if (LikedPosts.includes(postid)) {
-        setLikePosts((prev) => prev.filter((id) => id !== postid));
-      } else {
-        setLikePosts((prev) => [...prev, postid]);
-      }
-    });
+        .catch((err) => alert(err.message))
+    : alert("Please login to like a post");
 };

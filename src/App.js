@@ -3,8 +3,10 @@ import { useState, useEffect } from "react";
 import Bottomnav from "./Components/Bottomnav";
 import Topnav from "./Components/Topnav";
 import Home from "./pages/Home";
-import axios from "axios";
 import { UserContext } from "./context/User";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { validUser } from "./apiEndpoints/apiEndpoints";
+import Comment from "./pages/Comment";
 function App() {
   const [UserInfo, setUserInfo] = useState({
     userName: "",
@@ -15,41 +17,39 @@ function App() {
   });
   const [path, setpath] = useState("momos");
   useEffect(() => {
-    axios
-      .get("https://momofirstapi.herokuapp.com/authenticate/validUser", {
-        headers: {
+    validUser().then((res) => {
+      if (res.data.validUser) {
+        setUserInfo({
+          userName: res.data.username,
+          image: res.data.Image,
+          loginStatus: true,
           accessToken: localStorage.getItem("accessToken"),
-        },
-      })
-      .then((res) => {
-        if (res.data.validUser) {
-          setUserInfo({
-            userName: res.data.username,
-            image: res.data.Image,
-            loginStatus: true,
-            accessToken: localStorage.getItem("accessToken"),
-            verified: res.data.verified,
-          });
-        } else {
-          setUserInfo({
-            userName: "",
-            image: "",
-            loginStatus: false,
-            accessToken: "",
-            verified: false,
-          });
-          localStorage.removeItem("accessToken");
-        }
-      });
+          verified: res.data.verified,
+        });
+      } else {
+        setUserInfo({
+          userName: "",
+          image: "",
+          loginStatus: false,
+          accessToken: "",
+          verified: false,
+        });
+        localStorage.removeItem("accessToken");
+      }
+    });
   }, []);
   return (
-    <div className="App">
-      <UserContext.Provider value={{ UserInfo, setUserInfo, path, setpath }}>
+    <UserContext.Provider value={{ UserInfo, setUserInfo, path, setpath }}>
+      <Router>
         <Topnav />
-        <Home />
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/:username/:postid" exact component={Comment} />
+        </Switch>
+
         {UserInfo.loginStatus && <Bottomnav />}
-      </UserContext.Provider>
-    </div>
+      </Router>
+    </UserContext.Provider>
   );
 }
 

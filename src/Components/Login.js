@@ -1,8 +1,8 @@
 import { useState, useContext } from "react";
 import { Modal } from "@mantine/core";
 import { Button, Input, InputWrapper, PasswordInput } from "@mantine/core";
-import axios from "axios";
 import { UserContext } from "../context/User";
+import { login } from "../apiEndpoints/apiEndpoints";
 const Login = () => {
   const { setUserInfo } = useContext(UserContext);
   const [opened, setOpened] = useState(false);
@@ -17,11 +17,7 @@ const Login = () => {
     setPassword("");
   };
   const handlesumbit = () => {
-    axios
-      .post("https://momofirstapi.herokuapp.com/LoginUsers/login", {
-        Username: username,
-        Password: password,
-      })
+    login(username, password)
       .then((res) => {
         if (!res.data.error) {
           setUserInfo({
@@ -31,12 +27,14 @@ const Login = () => {
             accessToken: res.data.token,
             verified: res.data.verified,
           });
-          closeFunc();
+
           localStorage.setItem("accessToken", res.data.token);
+          window.location.reload();
         } else {
           setError(res.data.message);
         }
-      });
+      })
+      .catch((err) => setError(err.message));
   };
   return (
     <>
@@ -81,7 +79,7 @@ const Login = () => {
         </div>
       </Modal>
       <div
-        style={{ fontSize: "18px", color: "#1DA1F2" }}
+        style={{ fontSize: "18px", color: "#1DA1F2", cursor: "pointer" }}
         onClick={() => setOpened(true)}
       >
         Login

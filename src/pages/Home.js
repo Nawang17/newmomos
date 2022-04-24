@@ -2,31 +2,29 @@ import axios from "axios";
 import { useState, useEffect, useContext } from "react";
 import Posts from "../Components/Posts";
 import "../styles/Home.css";
-import { loadMoreposts } from "../functions/loadMoreposts";
+
 import { UserContext } from "../context/User";
+import { getHomePosts, loadMoreposts } from "../apiEndpoints/apiEndpoints";
 const Home = () => {
-  const { UserInfo } = useContext(UserContext);
+  const { UserInfo, setpath } = useContext(UserContext);
   const [loading, setloading] = useState(false);
   const [posts, setPosts] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [postResultsCount, setpostResultsCount] = useState(0);
   const [LikedPosts, setLikePosts] = useState([]);
   useEffect(() => {
+    setpath("momos");
     setloading(true);
-    axios
-      .get("https://momofirstapi.herokuapp.com/Post/getPosts?page=0", {
-        headers: {
-          accessToken: localStorage.getItem("accessToken"),
-        },
-      })
+
+    getHomePosts()
       .then((res) => {
         setPosts(res.data.listOfPosts);
         setLikePosts(res.data.likedPosts);
         setpostResultsCount(res.data.postCount);
         setloading(false);
       })
-      .catch((err) => alert(err));
-  }, [UserInfo]);
+      .catch((err) => alert(err.message));
+  }, [setpath]);
 
   return (
     <>

@@ -7,4 +7,5 @@ export const LogoutUser = (setUserInfo) => {
     verified: false,
   });
   localStorage.removeItem("accessToken");
+  window.location.reload();
 };

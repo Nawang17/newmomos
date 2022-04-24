@@ -56,8 +56,14 @@
   align-items: center;
   color: #41596f;
   gap: 5px;
+  cursor: pointer;
+}
+.Likes:hover {
+  color: red;
 }
 .LikesActive {
+  cursor: pointer;
+
   display: flex;
   align-items: center;
   color: red;
@@ -70,6 +76,10 @@
   display: flex;
   align-items: flex-start;
   gap: 5px;
+  cursor: pointer;
+}
+.Comments:hover {
+  color: #383535;
 }
 .CommentLogo {
 }

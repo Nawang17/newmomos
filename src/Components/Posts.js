@@ -2,8 +2,12 @@ import React from "react";
 import { Heart, Message2 } from "tabler-icons-react";
 import "../styles/Posts.css";
 import PostMenu from "./PostMenu";
+import { useHistory } from "react-router-dom";
+import { UserContext } from "../context/User";
 import { LikePost } from "../functions/LikePost";
 const Posts = ({ posts, LikedPosts, setPosts, setLikePosts }) => {
+  const { UserInfo } = React.useContext(UserContext);
+  const history = useHistory();
   return (
     <>
       {posts.map((value) => {
@@ -50,7 +54,8 @@ const Posts = ({ posts, LikedPosts, setPosts, setLikePosts }) => {
                       LikedPosts,
                       posts,
                       setPosts,
-                      setLikePosts
+                      setLikePosts,
+                      UserInfo.loginStatus
                     )
                   }
                   className={
@@ -64,7 +69,12 @@ const Posts = ({ posts, LikedPosts, setPosts, setLikePosts }) => {
                   />
                   <div className="likeCount">{value.Likes.length}</div>
                 </div>
-                <div className="Comments">
+                <div
+                  onClick={() => {
+                    history.push(`/${value.Username}/${value.id}`);
+                  }}
+                  className="Comments"
+                >
                   <Message2 className="CommentLogo" size={22} />
                   <div className="CommentCount">{value.Comments.length}</div>
                 </div>
