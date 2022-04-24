@@ -31,7 +31,7 @@ export const LikePosts = (postid, postUser) => {
     }
   );
 };
-export const loadMoreposts = (pageCount, setPosts) => {
+export const loadMoreposts = (pageCount, setPosts, seterror, setLoadError) => {
   axios
     .get(`${url}Post/getPosts?page=${pageCount + 1}`, {
       headers: {
@@ -40,6 +40,10 @@ export const loadMoreposts = (pageCount, setPosts) => {
     })
     .then((res) => {
       setPosts((prevState) => [...prevState, ...res.data.listOfPosts]);
+    })
+    .catch((err) => {
+      seterror(err.message);
+      setLoadError(true);
     });
 };
 

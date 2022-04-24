@@ -6,7 +6,8 @@ export const LikePost = (
   posts,
   setPosts,
   setLikePosts,
-  loginStatus
+  loginStatus,
+  setLikeError
 ) => {
   loginStatus
     ? LikePosts(postid, postUser)
@@ -33,5 +34,5 @@ export const LikePost = (
           }
         })
         .catch((err) => alert(err.message))
-    : alert("Please login to like a post");
+    : setLikeError(true);
 };

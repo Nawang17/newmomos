@@ -1,15 +1,25 @@
-import React from "react";
+import { useState, useContext } from "react";
 import { Heart, Message2 } from "tabler-icons-react";
 import "../styles/Posts.css";
 import PostMenu from "./PostMenu";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../context/User";
 import { LikePost } from "../functions/LikePost";
+import { ErrorAlert } from "./ErrorAlert";
+
 const Posts = ({ posts, LikedPosts, setPosts, setLikePosts }) => {
-  const { UserInfo } = React.useContext(UserContext);
+  const [LikeError, setLikeError] = useState(false);
+  const { UserInfo } = useContext(UserContext);
   const history = useHistory();
   return (
     <>
+      {LikeError && (
+        <ErrorAlert
+          alertText={"Please login to like this post"}
+          setError={setLikeError}
+        />
+      )}
+
       {posts.map((value) => {
         return (
           <div key={value.id} className="Posts">
@@ -55,7 +65,8 @@ const Posts = ({ posts, LikedPosts, setPosts, setLikePosts }) => {
                       posts,
                       setPosts,
                       setLikePosts,
-                      UserInfo.loginStatus
+                      UserInfo.loginStatus,
+                      setLikeError
                     )
                   }
                   className={

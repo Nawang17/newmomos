@@ -4,13 +4,16 @@ import { UserContext } from "../context/User";
 import "../styles/Comments.css";
 import { useParams } from "react-router";
 import { getComments } from "../apiEndpoints/apiEndpoints";
+import { ErrorAlert } from "../Components/ErrorAlert";
+
 const Comment = () => {
   const { setpath } = useContext(UserContext);
   const { username, postid } = useParams();
   const [posts, setPosts] = useState([]);
   const [LikedPosts, setLikedPosts] = useState([]);
   const [loading, setloading] = useState(false);
-
+  const [error, seterror] = useState(false);
+  const [LoadError, setLoadError] = useState(false);
   useEffect(() => {
     console.log("afwa");
     setloading(true);
@@ -22,19 +25,24 @@ const Comment = () => {
         setloading(false);
       })
       .catch((err) => {
-        alert(err);
+        seterror(err.message);
+        setLoadError(true);
       });
   }, [setpath, username, postid]);
   return (
-    <div className="Comment">
-      <Posts
-        posts={posts}
-        setPosts={setPosts}
-        setLikePosts={setLikedPosts}
-        LikedPosts={LikedPosts}
-        loading={loading}
-      />
-    </div>
+    <>
+      {LoadError && <ErrorAlert alertText={error} setError={setLoadError} />}
+
+      <div className="Comment">
+        <Posts
+          posts={posts}
+          setPosts={setPosts}
+          setLikePosts={setLikedPosts}
+          LikedPosts={LikedPosts}
+          loading={loading}
+        />
+      </div>
+    </>
   );
 };
 
