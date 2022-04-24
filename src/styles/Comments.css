@@ -1,5 +1,21 @@
 .Comment {
-  background-color: rgb(218, 10, 10);
+  /* background-color: rgb(218, 10, 10); */
   margin-top: 52px;
   margin-bottom: 63px;
+}
+.commentInput {
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  gap: 10px;
+  padding: 15px 18px;
+  align-items: center;
+  border-bottom: 1px solid #e1e8ed;
+}
+.commentInput input {
+  width: 100%;
+}
+.commentInput img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
 }

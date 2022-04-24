@@ -5,6 +5,8 @@ import "../styles/Comments.css";
 import { useParams } from "react-router";
 import { getComments } from "../apiEndpoints/apiEndpoints";
 import { ErrorAlert } from "../Components/ErrorAlert";
+import CommentInput from "../Components/CommentInput";
+import ShowComments from "../Components/ShowComments";
 
 const Comment = () => {
   const { setpath } = useContext(UserContext);
@@ -13,7 +15,10 @@ const Comment = () => {
   const [LikedPosts, setLikedPosts] = useState([]);
   const [loading, setloading] = useState(false);
   const [error, seterror] = useState(false);
+  const [comments, setComments] = useState([]);
   const [LoadError, setLoadError] = useState(false);
+  const [newComment, setNewComment] = useState(false);
+
   useEffect(() => {
     console.log("afwa");
     setloading(true);
@@ -21,6 +26,7 @@ const Comment = () => {
     getComments(username, postid)
       .then((res) => {
         setPosts(res.data.singlePosts);
+        setComments(res.data.singlePosts[0].Comments);
         setLikedPosts(res.data.likedPosts);
         setloading(false);
       })
@@ -28,7 +34,7 @@ const Comment = () => {
         seterror(err.message);
         setLoadError(true);
       });
-  }, [setpath, username, postid]);
+  }, [setpath, username, postid, newComment]);
   return (
     <>
       {LoadError && <ErrorAlert alertText={error} setError={setLoadError} />}
@@ -41,6 +47,8 @@ const Comment = () => {
           LikedPosts={LikedPosts}
           loading={loading}
         />
+        <CommentInput setNewComment={setNewComment} />
+        <ShowComments comments={comments} />
       </div>
     </>
   );

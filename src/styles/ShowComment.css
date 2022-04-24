@@ -1,0 +1,55 @@
+.ShowComments {
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  gap: 9px;
+  padding: 10px 18px;
+  font-size: 15px;
+}
+.NestedComments {
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  gap: 9px;
+  padding: 10px 70px;
+  font-size: 15px;
+}
+.NestedComments img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+.left {
+}
+.profileImage {
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+}
+.right {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+}
+.headerLeft {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.username {
+  font-weight: bold;
+}
+.date {
+  font-size: 12px;
+}
+.postText {
+}
+.replyButton {
+  font-size: 12px;
+  padding-top: 3px;
+  color: #657786;
+}

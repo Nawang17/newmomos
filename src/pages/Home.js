@@ -5,15 +5,13 @@ import "../styles/Home.css";
 
 import { UserContext } from "../context/User";
 import { getHomePosts, loadMoreposts } from "../apiEndpoints/apiEndpoints";
-import { ErrorAlert } from "../Components/ErrorAlert";
 const Home = () => {
-  const { UserInfo, setpath } = useContext(UserContext);
+  const { UserInfo, setpath, setError, setErrorMessage } =
+    useContext(UserContext);
   const [loading, setloading] = useState(false);
   const [posts, setPosts] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [postResultsCount, setpostResultsCount] = useState(0);
-  const [error, seterror] = useState(false);
-  const [LoadError, setLoadError] = useState(false);
   const [LikedPosts, setLikePosts] = useState([]);
 
   useEffect(() => {
@@ -28,14 +26,13 @@ const Home = () => {
         setloading(false);
       })
       .catch((err) => {
-        seterror(err.message);
-        setLoadError(true);
+        setErrorMessage(err.message);
+        setError(true);
       });
   }, [setpath]);
 
   return (
     <>
-      {LoadError && <ErrorAlert alertText={error} setError={setLoadError} />}
       {!loading ? (
         <div className="Home">
           <Posts
@@ -50,7 +47,7 @@ const Home = () => {
             <div
               onClick={() => {
                 setPageCount((prev) => prev + 1);
-                loadMoreposts(pageCount, setPosts, seterror, setLoadError);
+                loadMoreposts(pageCount, setPosts, setError, setErrorMessage);
               }}
               className="loadMore"
             >

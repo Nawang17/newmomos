@@ -7,6 +7,7 @@ import { UserContext } from "./context/User";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { validUser } from "./apiEndpoints/apiEndpoints";
 import Comment from "./pages/Comment";
+import { ErrorAlert } from "./Components/ErrorAlert";
 function App() {
   const [UserInfo, setUserInfo] = useState({
     userName: "",
@@ -15,6 +16,8 @@ function App() {
     accessToken: "",
     verified: false,
   });
+  const [Error, setError] = useState(false);
+  const [ErrorMessage, setErrorMessage] = useState("");
   const [path, setpath] = useState("momos");
   useEffect(() => {
     validUser().then((res) => {
@@ -39,17 +42,30 @@ function App() {
     });
   }, []);
   return (
-    <UserContext.Provider value={{ UserInfo, setUserInfo, path, setpath }}>
-      <Router>
-        <Topnav />
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/:username/:postid" exact component={Comment} />
-        </Switch>
+    <>
+      {Error && <ErrorAlert alertText={ErrorMessage} setError={setError} />}
 
-        {UserInfo.loginStatus && <Bottomnav />}
-      </Router>
-    </UserContext.Provider>
+      <UserContext.Provider
+        value={{
+          UserInfo,
+          setUserInfo,
+          path,
+          setpath,
+          setError,
+          setErrorMessage,
+        }}
+      >
+        <Router>
+          <Topnav />
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/:username/:postid" exact component={Comment} />
+          </Switch>
+
+          {UserInfo.loginStatus && <Bottomnav />}
+        </Router>
+      </UserContext.Provider>
+    </>
   );
 }
 

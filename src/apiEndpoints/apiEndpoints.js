@@ -1,4 +1,6 @@
 import axios from "axios";
+//https://momofirstapi.herokuapp.com/
+//http://localhost:3001/
 const url = "https://momofirstapi.herokuapp.com/";
 const token = localStorage.getItem("accessToken");
 
@@ -31,7 +33,12 @@ export const LikePosts = (postid, postUser) => {
     }
   );
 };
-export const loadMoreposts = (pageCount, setPosts, seterror, setLoadError) => {
+export const loadMoreposts = (
+  pageCount,
+  setPosts,
+  setError,
+  setErrorMessage
+) => {
   axios
     .get(`${url}Post/getPosts?page=${pageCount + 1}`, {
       headers: {
@@ -42,8 +49,8 @@ export const loadMoreposts = (pageCount, setPosts, seterror, setLoadError) => {
       setPosts((prevState) => [...prevState, ...res.data.listOfPosts]);
     })
     .catch((err) => {
-      seterror(err.message);
-      setLoadError(true);
+      setError(true);
+      setErrorMessage(err.message);
     });
 };
 

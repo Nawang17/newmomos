@@ -58,9 +58,7 @@
   gap: 5px;
   cursor: pointer;
 }
-.Likes:hover {
-  color: red;
-}
+
 .LikesActive {
   cursor: pointer;
 
@@ -78,8 +76,6 @@
   gap: 5px;
   cursor: pointer;
 }
-.Comments:hover {
-  color: #383535;
-}
+
 .CommentLogo {
 }
