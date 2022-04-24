@@ -1,6 +1,7 @@
 import axios from "axios";
-const url = "http://localhost:3001/";
+const url = "https://momofirstapi.herokuapp.com/";
 const token = localStorage.getItem("accessToken");
+
 export const validUser = () => {
   return axios.get(`${url}authenticate/validUser`, {
     headers: {
