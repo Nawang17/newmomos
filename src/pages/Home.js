@@ -5,7 +5,7 @@ import "../styles/Home.css";
 
 import { UserContext } from "../context/User";
 import { getHomePosts, loadMoreposts } from "../apiEndpoints/apiEndpoints";
-import { Plus } from "tabler-icons-react";
+import NewPosts from "../Components/NewPosts";
 const Home = () => {
   const { UserInfo, setpath, setError, setErrorMessage } =
     useContext(UserContext);
@@ -14,7 +14,6 @@ const Home = () => {
   const [pageCount, setPageCount] = useState(0);
   const [postResultsCount, setpostResultsCount] = useState(0);
   const [LikedPosts, setLikePosts] = useState([]);
-
   useEffect(() => {
     setpath("momos");
     setloading(true);
@@ -34,21 +33,7 @@ const Home = () => {
 
   return (
     <>
-      <div
-        style={{
-          cursor: "pointer",
-          zIndex: "1",
-          backgroundColor: "rgb(0 190 237)",
-          position: "fixed",
-          bottom: "8%",
-          right: "5%",
-          padding: "14px 15px",
-
-          borderRadius: "50%",
-        }}
-      >
-        <Plus />
-      </div>
+      <NewPosts setPosts={setPosts} />
       {!loading ? (
         <div className="Home">
           <Posts

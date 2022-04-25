@@ -8,16 +8,16 @@ const Bottomnav = () => {
     <div className="Bottomnav">
       <div className="navItems">
         <div onClick={() => history.push("/")} className="navItem">
-          <Home size={26} />
+          <Home />
         </div>
         <div className="navItem">
-          <MessageCircle2 size={26} />
+          <MessageCircle2 />
         </div>
         <div onClick={() => history.push("/Notifications")} className="navItem">
-          <Bell size={26} />
+          <Bell />
         </div>
         <div className="navItem">
-          <Menu size={26} />
+          <Menu />
         </div>
       </div>
     </div>

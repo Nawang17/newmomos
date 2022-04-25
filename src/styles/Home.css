@@ -10,3 +10,37 @@
   font-size: 16px;
   padding: 20px 0;
 }
+.newPosts {
+  cursor: pointer;
+  z-index: 1;
+  background-color: #1da1f2;
+  position: fixed;
+  color: white;
+  bottom: 7%;
+  right: 4%;
+  padding: 13px 15px;
+  border-radius: 50%;
+}
+
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.btn {
+  border: 2px solid gray;
+  color: gray;
+  background-color: white;
+  padding: 0px 5px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.upload-btn-wrapper input[type="file"] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
