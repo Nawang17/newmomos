@@ -1,6 +1,6 @@
 import React from "react";
 import { Notification } from "@mantine/core";
-
+import { X } from "tabler-icons-react";
 export const ErrorAlert = ({ setError, alertText }) => {
   return (
     <div
@@ -13,9 +13,12 @@ export const ErrorAlert = ({ setError, alertText }) => {
     >
       <Notification
         onClose={() => setError(false)}
-        title={alertText}
+        style={{ backgroundColor: "rgb(249 191 191)" }}
+        icon={<X size={18} />}
         color="red"
-      ></Notification>
+      >
+        {alertText}
+      </Notification>
     </div>
   );
 };

@@ -79,7 +79,12 @@ const Login = () => {
         </div>
       </Modal>
       <div
-        style={{ fontSize: "18px", color: "#1DA1F2", cursor: "pointer" }}
+        style={{
+          fontSize: "21px",
+          fontWeight: "bold",
+          color: "#1DA1F2",
+          cursor: "pointer",
+        }}
         onClick={() => setOpened(true)}
       >
         Login

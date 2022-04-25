@@ -5,6 +5,7 @@ import PostMenu from "./PostMenu";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../context/User";
 import { LikePost } from "../functions/LikePost";
+import moment from "moment";
 
 const Posts = ({ posts, LikedPosts, setPosts, setLikePosts }) => {
   const { UserInfo, setError, setErrorMessage } = useContext(UserContext);
@@ -28,7 +29,12 @@ const Posts = ({ posts, LikedPosts, setPosts, setLikePosts }) => {
                   <div className="username">
                     <p>{value.Username}</p>
                   </div>
-                  <div className="date">4/22/2022</div>
+                  <div className="date">
+                    {moment(value.createdAt).format("MMMM Do") ===
+                    moment(new Date()).format("MMMM Do")
+                      ? moment(value.createdAt).fromNow()
+                      : moment(value.createdAt).format("M/D/YY")}
+                  </div>
                 </div>
                 <div className="headerRight">
                   <PostMenu />

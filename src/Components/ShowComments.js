@@ -4,7 +4,7 @@ import PostMenu from "./PostMenu";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../context/User";
 import { ErrorAlert } from "./ErrorAlert";
-
+import moment from "moment";
 const ShowComments = ({ comments }) => {
   const [LikeError, setLikeError] = useState(false);
   const { UserInfo } = useContext(UserContext);
@@ -36,7 +36,13 @@ const ShowComments = ({ comments }) => {
                     <div className="username">
                       <p>{value.name}</p>
                     </div>
-                    <div className="date">4/22/2022</div>
+                    <div className="date">
+                      {" "}
+                      {moment(value.createdAt).format("MMMM Do") ===
+                      moment(new Date()).format("MMMM Do")
+                        ? moment(value.createdAt).fromNow()
+                        : moment(value.createdAt).format("M/D/YY")}
+                    </div>
                   </div>
                   <div className="headerRight">
                     <PostMenu />
@@ -64,7 +70,13 @@ const ShowComments = ({ comments }) => {
                         <div className="username">
                           <p>{val.name}</p>
                         </div>
-                        <div className="date">4/22/2022</div>
+                        <div className="date">
+                          {" "}
+                          {moment(val.createdAt).format("MMMM Do") ===
+                          moment(new Date()).format("MMMM Do")
+                            ? moment(val.createdAt).fromNow()
+                            : moment(val.createdAt).format("M/D/YY")}
+                        </div>
                       </div>
                       <div className="headerRight">
                         <PostMenu />

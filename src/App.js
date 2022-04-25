@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { validUser } from "./apiEndpoints/apiEndpoints";
 import Comment from "./pages/Comment";
 import { ErrorAlert } from "./Components/ErrorAlert";
+import Notifications from "./pages/Notifications";
 function App() {
   const [UserInfo, setUserInfo] = useState({
     userName: "",
@@ -60,9 +61,10 @@ function App() {
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/:username/:postid" exact component={Comment} />
+            <Route path="/Notifications" exact component={Notifications} />
           </Switch>
 
-          {UserInfo.loginStatus && <Bottomnav />}
+          <Bottomnav />
         </Router>
       </UserContext.Provider>
     </>

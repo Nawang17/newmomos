@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { Input, Badge } from "@mantine/core";
 import { UserContext } from "../context/User";
-import Reply from "../functions/Reply";
+import { Reply } from "../apiEndpoints/apiEndpoints";
 import { useParams } from "react-router-dom";
 const CommentInput = ({ setNewComment }) => {
   const { username, postid } = useParams();

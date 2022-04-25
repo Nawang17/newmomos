@@ -7,21 +7,13 @@ const Bottomnav = () => {
   return (
     <div className="Bottomnav">
       <div className="navItems">
-        <div
-          onClick={() => {
-            history.push("/");
-          }}
-          className="navItem"
-        >
+        <div onClick={() => history.push("/")} className="navItem">
           <Home size={26} />
         </div>
         <div className="navItem">
-          <MessageCircle2 size={26} />{" "}
+          <MessageCircle2 size={26} />
         </div>
-        <div className="navItem">
-          <Plus size={26} />
-        </div>
-        <div className="navItem">
+        <div onClick={() => history.push("/Notifications")} className="navItem">
           <Bell size={26} />
         </div>
         <div className="navItem">

@@ -1,0 +1,31 @@
+.Notifications {
+  margin-top: 43px;
+  margin-bottom: 63px;
+  font-size: 15px;
+}
+.main {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 18px;
+  border-bottom: 1px solid #e1e8ed;
+}
+.mainactive {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 18px;
+  background-color: rgb(211, 234, 248);
+}
+.noti {
+}
+.Notifications img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+.date {
+  color: #747779;
+}
