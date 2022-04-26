@@ -7,6 +7,7 @@ import { getComments } from "../apiEndpoints/apiEndpoints";
 import { ErrorAlert } from "../Components/ErrorAlert";
 import CommentInput from "../Components/CommentInput";
 import ShowComments from "../Components/ShowComments";
+import { Loader } from "@mantine/core";
 
 const Comment = () => {
   const { setpath } = useContext(UserContext);
@@ -38,18 +39,31 @@ const Comment = () => {
   return (
     <>
       {LoadError && <ErrorAlert alertText={error} setError={setLoadError} />}
-
-      <div className="Comment">
-        <Posts
-          posts={posts}
-          setPosts={setPosts}
-          setLikePosts={setLikedPosts}
-          LikedPosts={LikedPosts}
-          loading={loading}
-        />
-        <CommentInput setNewComment={setNewComment} />
-        <ShowComments comments={comments} />
-      </div>
+      {!loading ? (
+        <div className="Comment">
+          <Posts
+            posts={posts}
+            setPosts={setPosts}
+            setLikePosts={setLikedPosts}
+            LikedPosts={LikedPosts}
+            loading={loading}
+          />
+          <CommentInput setNewComment={setNewComment} />
+          <ShowComments comments={comments} />
+        </div>
+      ) : (
+        <div className="Comment">
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              padding: "40px 0px",
+            }}
+          >
+            <Loader />
+          </div>
+        </div>
+      )}
     </>
   );
 };

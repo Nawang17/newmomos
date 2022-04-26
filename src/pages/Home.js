@@ -1,4 +1,4 @@
-import axios from "axios";
+import { Loader } from "@mantine/core";
 import { useState, useEffect, useContext } from "react";
 import Posts from "../Components/Posts";
 import "../styles/Home.css";
@@ -56,7 +56,19 @@ const Home = () => {
             </div>
           )}
         </div>
-      ) : null}
+      ) : (
+        <div className="Home">
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              padding: "40px 0px",
+            }}
+          >
+            <Loader />
+          </div>
+        </div>
+      )}
     </>
   );
 };

@@ -1,4 +1,3 @@
-import { useSetState } from "@mantine/hooks";
 import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../context/User";
 import "../styles/Notifications.css";
@@ -7,6 +6,7 @@ import moment from "moment";
 import { useHistory } from "react-router-dom";
 import { loadMoreNotis } from "../apiEndpoints/apiEndpoints";
 import { notiSeen } from "../apiEndpoints/apiEndpoints";
+import { Loader } from "@mantine/core";
 const Notifications = () => {
   const history = useHistory();
   const { setpath, UserInfo, setError, setErrorMessage } =
@@ -26,53 +26,76 @@ const Notifications = () => {
             setloading(false);
           })
           .catch((err) => console.log(err))
-      : history.push("/");
+      : setloading(false);
   }, [UserInfo.loginStatus, history, setpath]);
   return (
     <>
       {!loading ? (
-        <div className="Notifications">
-          {notifications.map((val) => {
-            return (
-              <div
-                key={val.id}
-                onClick={() => {
-                  if (val.Clicked === "false") {
-                    notiSeen(val.id);
-                  } else {
-                  }
-                  if (val.PostId === "") {
-                    history.push(`/${val.Text.split(" ")[0]}`);
-                  } else {
-                    history.push(`/${UserInfo.userName}/${val.PostId}`);
-                  }
-                }}
-                className={val.Clicked === "True" ? "main" : "mainactive"}
-              >
-                <img src={val.Image} alt="" />
-                <div className="noti">{val.Text}</div>
-                <div className="date"> {moment(val.createdAt).fromNow()}</div>
-              </div>
-            );
-          })}
-          {notifications.length < notiCount && (
-            <div
-              onClick={() => {
-                setpageCount((prev) => prev + 1);
-                loadMoreNotis(
-                  pageCount,
-                  setNotifications,
-                  setError,
-                  setErrorMessage
+        UserInfo.loginStatus ? (
+          !loading ? (
+            <div className="Notifications">
+              {notifications.map((val) => {
+                return (
+                  <div
+                    key={val.id}
+                    onClick={() => {
+                      if (val.Clicked === "false") {
+                        notiSeen(val.id);
+                      } else {
+                      }
+                      if (val.PostId === "") {
+                        history.push(`/${val.Text.split(" ")[0]}`);
+                      } else {
+                        history.push(`/${UserInfo.userName}/${val.PostId}`);
+                      }
+                    }}
+                    className={val.Clicked === "True" ? "main" : "mainactive"}
+                  >
+                    <img src={val.Image} alt="" />
+                    <div className="noti">{val.Text}</div>
+                    <div className="date">
+                      {" "}
+                      {moment(val.createdAt).fromNow()}
+                    </div>
+                  </div>
                 );
-              }}
-              className="loadMore"
-            >
-              Load more Notifications
+              })}
+              {notifications.length < notiCount && (
+                <div
+                  onClick={() => {
+                    setpageCount((prev) => prev + 1);
+                    loadMoreNotis(
+                      pageCount,
+                      setNotifications,
+                      setError,
+                      setErrorMessage
+                    );
+                  }}
+                  className="loadMore"
+                >
+                  Load more Notifications
+                </div>
+              )}
             </div>
-          )}
+          ) : null
+        ) : (
+          <div className="Notifications">
+            <div className="main"> Login to see your notifications</div>
+          </div>
+        )
+      ) : (
+        <div className="Notifications">
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              padding: "40px 0px",
+            }}
+          >
+            <Loader />
+          </div>
         </div>
-      ) : null}
+      )}
     </>
   );
 };

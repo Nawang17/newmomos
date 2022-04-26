@@ -2,6 +2,7 @@ import React from "react";
 import { Bell, Home, Menu, MessageCircle2, Plus } from "tabler-icons-react";
 import "../styles/Bottomnav.css";
 import { useHistory } from "react-router-dom";
+import BurgerMenu from "./BurgerMenu";
 const Bottomnav = () => {
   const history = useHistory();
   return (
@@ -17,7 +18,7 @@ const Bottomnav = () => {
           <Bell />
         </div>
         <div className="navItem">
-          <Menu />
+          <BurgerMenu />
         </div>
       </div>
     </div>

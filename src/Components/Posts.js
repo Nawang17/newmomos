@@ -37,7 +37,11 @@ const Posts = ({ posts, LikedPosts, setPosts, setLikePosts }) => {
                   </div>
                 </div>
                 <div className="headerRight">
-                  <PostMenu />
+                  <PostMenu
+                    Username={value.Username}
+                    postId={value.id}
+                    setPosts={setPosts}
+                  />
                 </div>
               </div>
 
