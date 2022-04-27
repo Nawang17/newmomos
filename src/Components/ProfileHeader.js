@@ -11,6 +11,8 @@ const ProfileHeader = ({
   UserInfo,
   setError,
   setErrorMessage,
+  Following,
+  setFollowing,
 }) => {
   const history = useHistory();
   const { username } = useParams();
@@ -56,12 +58,14 @@ const ProfileHeader = ({
             ]);
 
             setisFollowing(true);
+            setFollowing((prev) => [...prev, username]);
           } else {
             setfollowers((prev) =>
               prev.filter((item) => item.follower !== UserInfo.userName)
             );
 
             setisFollowing(false);
+            setFollowing((prev) => prev.filter((item) => item !== username));
           }
         });
     } else {

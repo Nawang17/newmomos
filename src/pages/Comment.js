@@ -49,7 +49,7 @@ const Comment = () => {
             loading={loading}
           />
           <CommentInput setNewComment={setNewComment} />
-          <ShowComments comments={comments} />
+          <ShowComments comments={comments} setComments={setComments} />
         </div>
       ) : (
         <div className="Comment">

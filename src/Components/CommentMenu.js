@@ -1,22 +1,13 @@
 import React from "react";
-import { Menu, Divider, Text } from "@mantine/core";
-import {
-  Search,
-  Photo,
-  Trash,
-  ArrowsLeftRight,
-  Share,
-  UserPlus,
-} from "tabler-icons-react";
+import { Menu } from "@mantine/core";
+import { Trash, Share, UserPlus } from "tabler-icons-react";
 import { Modal, Button } from "@mantine/core";
 import axios from "axios";
 import { UserContext } from "../context/User";
-import { DeletePost } from "../functions/DeletePost";
-import { useHistory } from "react-router-dom";
-const PostMenu = ({ Username, postId, setPosts }) => {
+import { DeleteComment } from "../functions/DeleteComment";
+const CommentMenu = ({ Username, postId, setComments }) => {
   const [modalOpen, setModalOpen] = React.useState(false);
 
-  const history = useHistory();
   const { UserInfo, setError, setErrorMessage, following, setFollowing } =
     React.useContext(UserContext);
   const followuser = () => {
@@ -59,14 +50,14 @@ const PostMenu = ({ Username, postId, setPosts }) => {
           onClick={() => {
             if (navigator.share) {
               navigator.share({
-                title: "Share Post",
-                url: `https://momos.ga/Post/${Username}/${postId}`,
+                title: "Share Comment",
+                url: window.location.href,
               });
             }
           }}
           icon={<Share size={14} />}
         >
-          Share Post
+          Share Comment
         </Menu.Item>
 
         {UserInfo.userName === Username && (
@@ -76,7 +67,7 @@ const PostMenu = ({ Username, postId, setPosts }) => {
               color="red"
               icon={<Trash size={14} />}
             >
-              Delete Post
+              Delete Comment
             </Menu.Item>
           </>
         )}
@@ -84,7 +75,7 @@ const PostMenu = ({ Username, postId, setPosts }) => {
       <Modal
         opened={modalOpen}
         onClose={() => setModalOpen(false)}
-        title="Delete Post?"
+        title="Delete Comment?"
       >
         <p>This can’t be undone and it will be removed from your profile.</p>
         <div
@@ -99,13 +90,12 @@ const PostMenu = ({ Username, postId, setPosts }) => {
           <Button
             color="red"
             onClick={() => {
-              DeletePost(
+              DeleteComment(
                 postId,
                 Username,
-                setPosts,
+                setComments,
                 setError,
-                setErrorMessage,
-                history
+                setErrorMessage
               );
 
               setModalOpen(false);
@@ -119,4 +109,4 @@ const PostMenu = ({ Username, postId, setPosts }) => {
   );
 };
 
-export default PostMenu;
+export default CommentMenu;
