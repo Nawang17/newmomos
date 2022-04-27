@@ -55,7 +55,7 @@ const ProfileHeader = ({ profileInfo, UserInfo }) => {
               prev.filter((item) => item.follower !== UserInfo.userName)
             );
 
-            setisFollowing(true);
+            setisFollowing(false);
           }
         });
     } else {
