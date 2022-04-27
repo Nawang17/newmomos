@@ -24,7 +24,6 @@ const Login = () => {
             userName: res.data.Username,
             image: res.data.Image,
             loginStatus: true,
-            accessToken: res.data.token,
             verified: res.data.verified,
           });
 

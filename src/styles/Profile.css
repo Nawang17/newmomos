@@ -1,0 +1,34 @@
+.Profile {
+  background-color: rgb(255, 255, 255);
+  margin-top: 52px;
+  margin-bottom: 63px;
+  font-size: 15px;
+}
+
+.ProfileHeader {
+  padding: 15px 18px;
+}
+.ProfileHeadertop {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.profileTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.ProfileHeader img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+.joinedDate {
+  display: flex;
+  font-size: 13px;
+  color: #364048;
+}
+.followData {
+  display: flex;
+  gap: 9px;
+}

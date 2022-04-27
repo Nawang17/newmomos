@@ -9,12 +9,12 @@ import { validUser } from "./apiEndpoints/apiEndpoints";
 import Comment from "./pages/Comment";
 import { ErrorAlert } from "./Components/ErrorAlert";
 import Notifications from "./pages/Notifications";
+import Profile from "./pages/Profile";
 function App() {
   const [UserInfo, setUserInfo] = useState({
     userName: "",
     image: "",
     loginStatus: false,
-    accessToken: "",
     verified: false,
   });
   const [Error, setError] = useState(false);
@@ -27,7 +27,7 @@ function App() {
           userName: res.data.username,
           image: res.data.Image,
           loginStatus: true,
-          accessToken: localStorage.getItem("accessToken"),
+
           verified: res.data.verified,
         });
       } else {
@@ -35,7 +35,6 @@ function App() {
           userName: "",
           image: "",
           loginStatus: false,
-          accessToken: "",
           verified: false,
         });
         localStorage.removeItem("accessToken");
@@ -60,8 +59,9 @@ function App() {
           <Topnav />
           <Switch>
             <Route path="/" exact component={Home} />
-            <Route path="/:username/:postid" exact component={Comment} />
+            <Route path="/Post/:username/:postid" exact component={Comment} />
             <Route path="/Notifications" exact component={Notifications} />
+            <Route path="/Profile/:username" exact component={Profile} />
           </Switch>
 
           <Bottomnav />

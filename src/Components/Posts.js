@@ -17,6 +17,7 @@ const Posts = ({ posts, LikedPosts, setPosts, setLikePosts }) => {
           <div key={value.id} className="Posts">
             <div className="left">
               <img
+                onClick={() => history.push(`/Profile/${value.Username}`)}
                 loading="lazy"
                 className="profileImage"
                 src={value.image}
@@ -27,7 +28,11 @@ const Posts = ({ posts, LikedPosts, setPosts, setLikePosts }) => {
               <div className="header">
                 <div className="headerLeft">
                   <div className="username">
-                    <p>{value.Username}</p>
+                    <p
+                      onClick={() => history.push(`/Profile/${value.Username}`)}
+                    >
+                      {value.Username}
+                    </p>
                   </div>
                   <div className="date">
                     {moment(value.createdAt).format("MMMM Do") ===
@@ -84,7 +89,7 @@ const Posts = ({ posts, LikedPosts, setPosts, setLikePosts }) => {
                 </div>
                 <div
                   onClick={() => {
-                    history.push(`/${value.Username}/${value.id}`);
+                    history.push(`Post/${value.Username}/${value.id}`);
                   }}
                   className="Comments"
                 >

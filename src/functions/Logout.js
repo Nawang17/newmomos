@@ -3,7 +3,6 @@ export const LogoutUser = (setUserInfo) => {
     userName: "",
     image: "",
     loginStatus: false,
-    accessToken: "",
     verified: false,
   });
   localStorage.removeItem("accessToken");
