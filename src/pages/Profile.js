@@ -9,7 +9,8 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import Posts from "../Components/Posts";
 const Profile = () => {
-  const { setpath, UserInfo } = useContext(UserContext);
+  const { setpath, UserInfo, setError, setErrorMessage } =
+    useContext(UserContext);
   const { username } = useParams();
   const [profileInfo, setprofileInfo] = useState({});
   const [posts, setPosts] = useState([]);
@@ -46,7 +47,12 @@ const Profile = () => {
     <div className="Profile">
       {!loading ? (
         <>
-          <ProfileHeader UserInfo={UserInfo} profileInfo={profileInfo} />
+          <ProfileHeader
+            setError={setError}
+            setErrorMessage={setErrorMessage}
+            UserInfo={UserInfo}
+            profileInfo={profileInfo}
+          />
           <Tabs active={activeTab} onTabChange={setActiveTab}>
             <Tabs.Tab label="Posts" icon={<Inbox size={14} />}>
               <Posts

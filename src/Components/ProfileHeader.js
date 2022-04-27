@@ -5,7 +5,12 @@ import { useParams } from "react-router-dom";
 import moment from "moment";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-const ProfileHeader = ({ profileInfo, UserInfo }) => {
+const ProfileHeader = ({
+  profileInfo,
+  UserInfo,
+  setError,
+  setErrorMessage,
+}) => {
   const history = useHistory();
   const { username } = useParams();
   const [following, setfollowing] = useState([]);
@@ -59,6 +64,8 @@ const ProfileHeader = ({ profileInfo, UserInfo }) => {
           }
         });
     } else {
+      setErrorMessage("You must be logged in to follow a user");
+      setError(true);
     }
   };
   return (
