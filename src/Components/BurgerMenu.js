@@ -1,11 +1,16 @@
 import { useState, useContext } from "react";
 import { Drawer } from "@mantine/core";
 import "../styles/Drawer.css";
-import { Settings, User, Logout, Menu, Lock, Moon } from "tabler-icons-react";
+import { Settings, User, Logout, Menu, Moon } from "tabler-icons-react";
 import { UserContext } from "../context/User";
 import { LogoutUser } from "../functions/Logout";
 import Login from "./Login";
+import { BsFillPersonPlusFill } from "react-icons/bs";
+
+import { HiOutlineLogin } from "react-icons/hi";
+
 import { useHistory } from "react-router-dom";
+import RegisterModal from "./RegisterModal";
 const BurgerMenu = () => {
   const history = useHistory();
   const [opened, setOpened] = useState(false);
@@ -47,14 +52,19 @@ const BurgerMenu = () => {
           <>
             <div className="menu">
               <div className="menuItem">
-                <Lock size={26} />
+                <HiOutlineLogin size={28} />
 
                 <Login />
               </div>
               <div className="menuItem">
+                <BsFillPersonPlusFill size={28} />
+
+                <RegisterModal />
+              </div>
+              {/* <div className="menuItem">
                 <Moon size={26} />
                 <p>NightMode</p>
-              </div>
+              </div> */}
             </div>
           </>
         )}

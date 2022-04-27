@@ -1,8 +1,9 @@
 import { useState, useContext } from "react";
-import { Modal } from "@mantine/core";
+import { Loader, Modal } from "@mantine/core";
 import { Button, Input, InputWrapper, PasswordInput } from "@mantine/core";
 import { UserContext } from "../context/User";
 import { login } from "../apiEndpoints/apiEndpoints";
+import RegisterModal from "./RegisterModal";
 const Login = () => {
   const { setUserInfo } = useContext(UserContext);
   const [opened, setOpened] = useState(false);
@@ -10,6 +11,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
+  const [loading, setloading] = useState(false);
   const closeFunc = () => {
     setOpened(false);
     setError("");
@@ -17,6 +19,7 @@ const Login = () => {
     setPassword("");
   };
   const handlesumbit = () => {
+    setloading(true);
     login(username, password)
       .then((res) => {
         if (!res.data.error) {
@@ -31,9 +34,13 @@ const Login = () => {
           window.location.reload();
         } else {
           setError(res.data.message);
+          setloading(false);
         }
       })
-      .catch((err) => setError(err.message));
+      .catch((err) => {
+        setError(err.message);
+        setloading(false);
+      });
   };
   return (
     <>
@@ -52,11 +59,13 @@ const Login = () => {
           label="Username"
         >
           <Input
+            value={username}
             onChange={(e) => setUsername(e.target.value)}
             placeholder="Username"
           />
         </InputWrapper>
         <PasswordInput
+          value={password}
           onChange={(e) => setPassword(e.target.value)}
           style={{ paddingBottom: "12px" }}
           placeholder="Password"
@@ -70,17 +79,41 @@ const Login = () => {
             justifyContent: "space-between",
           }}
         >
-          <p style={{ fontSize: "13px", cursor: "pointer" }}>
-            {/* <Register /> */}
-          </p>
+          <div
+            style={{
+              fontSize: "13px",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              gap: "5px",
+            }}
+          >
+            <p> Don't have an account?</p> <RegisterModal />
+          </div>
 
-          <Button onClick={() => handlesumbit()}>Login</Button>
+          {loading ? (
+            <Loader />
+          ) : (
+            <Button onClick={() => handlesumbit()}>Login</Button>
+          )}
         </div>
+
+        <p
+          style={{
+            fontSize: "14px",
+            color: "#1DA1F2",
+            cursor: "pointer",
+          }}
+          onClick={() => {
+            setUsername("Demo");
+            setPassword("Demo");
+          }}
+        >
+          Try Demo Account
+        </p>
       </Modal>
       <div
         style={{
-          fontSize: "21px",
-          fontWeight: "bold",
           color: "#1DA1F2",
           cursor: "pointer",
         }}

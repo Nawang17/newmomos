@@ -67,6 +67,13 @@ export const login = (username, password) => {
     Password: password,
   });
 };
+export const Register = (username, password, confirmpass) => {
+  return axios.post(`${url}authenticate/register`, {
+    Username: username,
+    Password: password,
+    ConfirmPassword: confirmpass,
+  });
+};
 
 export const Reply = (
   id,
