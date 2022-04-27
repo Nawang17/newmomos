@@ -1,8 +1,16 @@
 import axios from "axios";
-export const NestedCommentDelete = (deleteid, userid) => {
+export const NestedCommentDelete = (
+  postId,
+  Username,
+  setComments,
+  setError,
+  setErrorMessage,
+  setdeleting
+) => {
+  setdeleting(false);
   axios
     .delete(
-      `https://momofirstapi.herokuapp.com/NestedComments/deleteComment/${deleteid}/${userid}`,
+      `https://momofirstapi.herokuapp.com/NestedComments/deleteComment/${postId}/${Username}`,
 
       {
         headers: {
@@ -12,8 +20,10 @@ export const NestedCommentDelete = (deleteid, userid) => {
     )
     .then((res) => {
       if (res.data.error) {
-        alert(res.data.message);
+        setErrorMessage(res.data.message);
+        setError(true);
       } else {
+        setdeleting(true);
       }
     });
 };

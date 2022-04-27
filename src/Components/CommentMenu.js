@@ -5,7 +5,8 @@ import { Modal, Button } from "@mantine/core";
 import axios from "axios";
 import { UserContext } from "../context/User";
 import { DeleteComment } from "../functions/DeleteComment";
-const CommentMenu = ({ Username, postId, setComments }) => {
+import { NestedCommentDelete } from "../functions/NestedCommentDelete";
+const CommentMenu = ({ Username, postId, setComments, reply, setdeleting }) => {
   const [modalOpen, setModalOpen] = React.useState(false);
 
   const { UserInfo, setError, setErrorMessage, following, setFollowing } =
@@ -90,13 +91,22 @@ const CommentMenu = ({ Username, postId, setComments }) => {
           <Button
             color="red"
             onClick={() => {
-              DeleteComment(
-                postId,
-                Username,
-                setComments,
-                setError,
-                setErrorMessage
-              );
+              reply
+                ? NestedCommentDelete(
+                    postId,
+                    Username,
+                    setComments,
+                    setError,
+                    setErrorMessage,
+                    setdeleting
+                  )
+                : DeleteComment(
+                    postId,
+                    Username,
+                    setComments,
+                    setError,
+                    setErrorMessage
+                  );
 
               setModalOpen(false);
             }}

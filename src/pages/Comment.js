@@ -19,7 +19,7 @@ const Comment = () => {
   const [comments, setComments] = useState([]);
   const [LoadError, setLoadError] = useState(false);
   const [newComment, setNewComment] = useState(false);
-
+  const [deleting, setdeleting] = useState(false);
   useEffect(() => {
     console.log("afwa");
     setloading(true);
@@ -35,7 +35,7 @@ const Comment = () => {
         seterror(err.message);
         setLoadError(true);
       });
-  }, [setpath, username, postid, newComment]);
+  }, [setpath, username, postid, newComment, deleting]);
   return (
     <>
       {LoadError && <ErrorAlert alertText={error} setError={setLoadError} />}
@@ -49,7 +49,11 @@ const Comment = () => {
             loading={loading}
           />
           <CommentInput setNewComment={setNewComment} />
-          <ShowComments comments={comments} setComments={setComments} />
+          <ShowComments
+            comments={comments}
+            setComments={setComments}
+            setdeleting={setdeleting}
+          />
         </div>
       ) : (
         <div className="Comment">
