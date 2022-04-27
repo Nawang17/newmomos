@@ -1,9 +1,66 @@
-import { Button, Tabs } from "@mantine/core";
-import React from "react";
-import { CalendarEvent, Photo, Heart, Inbox } from "tabler-icons-react";
+import { Button, Modal } from "@mantine/core";
+import { useEffect, useState } from "react";
+import { CalendarEvent } from "tabler-icons-react";
 import { useParams } from "react-router-dom";
-const ProfileHeader = () => {
+import moment from "moment";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
+const ProfileHeader = ({ profileInfo, UserInfo }) => {
+  const history = useHistory();
   const { username } = useParams();
+  const [following, setfollowing] = useState([]);
+  const [followers, setfollowers] = useState([]);
+  const [isFollowing, setisFollowing] = useState(false);
+  const [opened, setOpened] = useState(false);
+
+  const [openned, setOpenned] = useState(false);
+
+  useEffect(() => {
+    axios
+      .get(
+        `https://momofirstapi.herokuapp.com/Profile/followData/${username}/${
+          UserInfo.userName || null
+        }`
+      )
+      .then((res) => {
+        setfollowing(res.data.Userfollowing);
+        setfollowers(res.data.Userfollower);
+        setisFollowing(res.data.isfollowing);
+      });
+  }, []);
+  const followuser = () => {
+    if (UserInfo.loginStatus) {
+      axios
+        .post(
+          "https://momofirstapi.herokuapp.com/Profile/follow",
+          {
+            following: username,
+          },
+          {
+            headers: {
+              accessToken: localStorage.getItem("accessToken"),
+            },
+          }
+        )
+        .then((res) => {
+          if (res.data.followed) {
+            setfollowers((prev) => [
+              ...prev,
+              { id: 1231, follower: UserInfo.userName },
+            ]);
+
+            setisFollowing(true);
+          } else {
+            setfollowers((prev) =>
+              prev.filter((item) => item.follower !== UserInfo.userName)
+            );
+
+            setisFollowing(true);
+          }
+        });
+    } else {
+    }
+  };
   return (
     <>
       <div className="ProfileHeader">
@@ -12,43 +69,94 @@ const ProfileHeader = () => {
             className="profileTop
     "
           >
-            <img
-              className="profileImage"
-              src="https://picsum.photos/300/300"
-              alt=""
-            />
+            <img className="profileImage" src={profileInfo.Image} alt="" />
             <div>
-              <Button>Follow</Button>
+              {username !== UserInfo.userName &&
+                (!isFollowing ? (
+                  <Button onClick={() => followuser()} radius={25}>
+                    Follow
+                  </Button>
+                ) : (
+                  <Button
+                    onClick={() => followuser()}
+                    variant="outline"
+                    radius={25}
+                  >
+                    Following
+                  </Button>
+                ))}
             </div>
           </div>
+
           <div className="username">
-            <p>{username}</p>
+            <p>{profileInfo.Username}</p>
           </div>
-          <div className="description">
-            <p>hello bruh this is description</p>
-          </div>
+          {profileInfo.description !== "no" && (
+            <div className="description">
+              <p>{profileInfo.description}</p>
+            </div>
+          )}
+
           <div className="joinedDate">
             <CalendarEvent size={19} />
-            <p>Joined April 2021</p>
+            <p>Joined {moment(profileInfo.createdAt).format("MMMM YYYY")}</p>
           </div>
           <div className="followData">
-            <div className="followers">
-              <strong>1000</strong> Following
+            <div
+              onClick={() => {
+                setOpened(!opened);
+              }}
+              className="followers"
+            >
+              <strong>{following.length}</strong> Following
             </div>
-            <div className="followers">
-              <strong>1000</strong> Followers
+            <div
+              onClick={() => {
+                setOpenned(!openned);
+              }}
+              className="followers"
+            >
+              <strong>{followers.length}</strong> Followers
             </div>
           </div>
         </div>
       </div>
-      <Tabs>
-        <Tabs.Tab label="Posts" icon={<Inbox size={14} />}>
-          posts
-        </Tabs.Tab>
-        <Tabs.Tab label="Likes" icon={<Heart size={14} />}>
-          likedposts
-        </Tabs.Tab>
-      </Tabs>
+      <Modal
+        opened={opened}
+        onClose={() => setOpened(false)}
+        overflow="inside"
+        title="Following"
+      >
+        {following.map((item) => {
+          return (
+            <div
+              onClick={() => history.push(`/Profile/${item.following}`)}
+              style={{ paddingBottom: "20px", cursor: "pointer" }}
+              key={item.id}
+            >
+              {item.following}
+            </div>
+          );
+        })}
+      </Modal>
+      <Modal
+        opened={openned}
+        onClose={() => setOpenned(false)}
+        overflow="inside"
+        title="Followers"
+      >
+        {followers.map((item) => {
+          return (
+            <div
+              onClick={() => history.push(`/Profile/${item.follower}`)}
+              style={{ paddingBottom: "20px", cursor: "pointer" }}
+              key={item.id}
+            >
+              {item.follower}
+            </div>
+          );
+        })}
+      </Modal>
     </>
   );
 };

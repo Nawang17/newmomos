@@ -5,7 +5,9 @@ import { Settings, User, Logout, Menu, Key, Moon } from "tabler-icons-react";
 import { UserContext } from "../context/User";
 import { LogoutUser } from "../functions/Logout";
 import Login from "./Login";
+import { useHistory } from "react-router-dom";
 const BurgerMenu = () => {
+  const history = useHistory();
   const [opened, setOpened] = useState(false);
   const { UserInfo, setUserInfo } = useContext(UserContext);
   return (
@@ -24,7 +26,10 @@ const BurgerMenu = () => {
               <p>{UserInfo.userName}</p>
             </div>
             <div className="menu">
-              <div className="menuItem">
+              <div
+                onClick={() => history.push(`/Profile/${UserInfo.userName}`)}
+                className="menuItem"
+              >
                 <User size={26} />
                 <p>Profile</p>
               </div>

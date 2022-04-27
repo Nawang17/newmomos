@@ -7,8 +7,7 @@ import { UserContext } from "../context/User";
 import { getHomePosts, loadMoreposts } from "../apiEndpoints/apiEndpoints";
 import NewPosts from "../Components/NewPosts";
 const Home = () => {
-  const { UserInfo, setpath, setError, setErrorMessage } =
-    useContext(UserContext);
+  const { setpath, setError, setErrorMessage } = useContext(UserContext);
   const [loading, setloading] = useState(false);
   const [posts, setPosts] = useState([]);
   const [pageCount, setPageCount] = useState(0);

@@ -4,7 +4,9 @@ import "../styles/Drawer.css";
 import { Settings, User, Logout } from "tabler-icons-react";
 import { UserContext } from "../context/User";
 import { LogoutUser } from "../functions/Logout";
+import { useHistory } from "react-router-dom";
 const ProfileDrawer = () => {
+  const history = useHistory();
   const [opened, setOpened] = useState(false);
   const { UserInfo, setUserInfo } = useContext(UserContext);
   return (
@@ -21,7 +23,10 @@ const ProfileDrawer = () => {
           <p>{UserInfo.userName}</p>
         </div>
         <div className="menu">
-          <div className="menuItem">
+          <div
+            onClick={() => history.push(`/Profile/${UserInfo.userName}`)}
+            className="menuItem"
+          >
             <User size={26} />
             <p>Profile</p>
           </div>

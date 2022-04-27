@@ -11,7 +11,8 @@
 .ProfileHeadertop {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
+  padding-top: 15px;
 }
 .profileTop {
   display: flex;
@@ -31,4 +32,5 @@
 .followData {
   display: flex;
   gap: 9px;
+  cursor: pointer;
 }

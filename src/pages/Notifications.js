@@ -44,9 +44,11 @@ const Notifications = () => {
                       } else {
                       }
                       if (val.PostId === "") {
-                        history.push(`/${val.Text.split(" ")[0]}`);
+                        history.push(`/Profile/${val.Text.split(" ")[0]}`);
                       } else {
-                        history.push(`/${UserInfo.userName}/${val.PostId}`);
+                        history.push(
+                          `/Post/${UserInfo.userName}/${val.PostId}`
+                        );
                       }
                     }}
                     className={val.Clicked === "True" ? "main" : "mainactive"}

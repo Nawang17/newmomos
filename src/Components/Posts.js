@@ -89,7 +89,7 @@ const Posts = ({ posts, LikedPosts, setPosts, setLikePosts }) => {
                 </div>
                 <div
                   onClick={() => {
-                    history.push(`Post/${value.Username}/${value.id}`);
+                    history.push(`/Post/${value.Username}/${value.id}`);
                   }}
                   className="Comments"
                 >

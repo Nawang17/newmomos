@@ -1,6 +1,6 @@
 import axios from "axios";
 //https://momofirstapi.herokuapp.com/
-//http://localhost:3001/
+//https://momofirstapi.herokuapp.com/
 const url = "https://momofirstapi.herokuapp.com/";
 const token = localStorage.getItem("accessToken");
 
