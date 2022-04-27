@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { Drawer } from "@mantine/core";
 import "../styles/Drawer.css";
-import { Settings, User, Logout, Menu, Key, Moon } from "tabler-icons-react";
+import { Settings, User, Logout, Menu, Lock, Moon } from "tabler-icons-react";
 import { UserContext } from "../context/User";
 import { LogoutUser } from "../functions/Logout";
 import Login from "./Login";
@@ -47,7 +47,8 @@ const BurgerMenu = () => {
           <>
             <div className="menu">
               <div className="menuItem">
-                <Key size={26} />
+                <Lock size={26} />
+
                 <Login />
               </div>
               <div className="menuItem">

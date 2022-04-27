@@ -5,6 +5,8 @@ import { useHistory } from "react-router-dom";
 import { UserContext } from "../context/User";
 import { ErrorAlert } from "./ErrorAlert";
 import moment from "moment";
+import { MdVerified } from "react-icons/md";
+
 const ShowComments = ({ comments }) => {
   const [LikeError, setLikeError] = useState(false);
   const { UserInfo } = useContext(UserContext);
@@ -33,8 +35,12 @@ const ShowComments = ({ comments }) => {
               <div className="right">
                 <div className="header">
                   <div className="headerLeft">
-                    <div className="username">
+                    <div
+                      onClick={() => history.push(`/Profile/${value.name}`)}
+                      className="username"
+                    >
                       <p>{value.name}</p>
+                      {value.verified && <MdVerified color="green" size={14} />}
                     </div>
                     <div className="date">
                       {" "}
@@ -67,8 +73,14 @@ const ShowComments = ({ comments }) => {
                   <div className="right">
                     <div className="header">
                       <div className="headerLeft">
-                        <div className="username">
+                        <div
+                          onClick={() => history.push(`/Profile/${val.name}`)}
+                          className="username"
+                        >
                           <p>{val.name}</p>
+                          {val.verified && (
+                            <MdVerified color="green" size={14} />
+                          )}
                         </div>
                         <div className="date">
                           {" "}

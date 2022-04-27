@@ -31,6 +31,8 @@
 
 .username {
   font-weight: bold;
+  cursor: pointer;
+  display: flex;
 }
 .date {
   font-size: 12px;

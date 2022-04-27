@@ -1,52 +1,85 @@
 import React from "react";
 import { Menu, Divider, Text } from "@mantine/core";
 import {
-  Settings,
   Search,
   Photo,
-  MessageCircle,
   Trash,
   ArrowsLeftRight,
+  Share,
+  UserPlus,
 } from "tabler-icons-react";
 import { Modal, Button } from "@mantine/core";
-
+import axios from "axios";
 import { UserContext } from "../context/User";
 import { DeletePost } from "../functions/DeletePost";
 import { useHistory } from "react-router-dom";
 const PostMenu = ({ Username, postId, setPosts }) => {
   const [modalOpen, setModalOpen] = React.useState(false);
+
   const history = useHistory();
-  const { UserInfo, setError, setErrorMessage } = React.useContext(UserContext);
+  const { UserInfo, setError, setErrorMessage, following, setFollowing } =
+    React.useContext(UserContext);
+  const followuser = () => {
+    if (UserInfo.loginStatus) {
+      axios
+        .post(
+          "https://momofirstapi.herokuapp.com/Profile/follow",
+          {
+            following: Username,
+          },
+          {
+            headers: {
+              accessToken: localStorage.getItem("accessToken"),
+            },
+          }
+        )
+        .then((res) => {
+          if (res.data.followed) {
+            setFollowing((prev) => [...prev, Username]);
+          } else {
+            setFollowing((prev) => prev.filter((item) => item !== Username));
+          }
+        });
+    } else {
+      setErrorMessage("You must be logged in to follow a user");
+      setError(true);
+    }
+  };
   return (
     <>
       <Menu position="bottom">
-        <Menu.Label>Application</Menu.Label>
-        <Menu.Item icon={<Settings size={14} />}>Settings</Menu.Item>
-        <Menu.Item icon={<MessageCircle size={14} />}>Messages</Menu.Item>
-        <Menu.Item icon={<Photo size={14} />}>Gallery</Menu.Item>
-        <Menu.Item
-          icon={<Search size={14} />}
-          rightSection={
-            <Text size="xs" color="dimmed">
-              ⌘K
-            </Text>
-          }
-        >
-          Search
-        </Menu.Item>
-        <Divider />
-        <Menu.Label>Danger zone</Menu.Label>
-        <Menu.Item icon={<ArrowsLeftRight size={14} />}>
-          Transfer my data
-        </Menu.Item>
-        {UserInfo.userName === Username && (
-          <Menu.Item
-            onClick={() => setModalOpen(true)}
-            color="red"
-            icon={<Trash size={14} />}
-          >
-            Delete Post
+        {UserInfo.userName !== Username && (
+          <Menu.Item onClick={() => followuser()} icon={<UserPlus size={14} />}>
+            {following.includes(Username)
+              ? `Unfollow ${Username}`
+              : `Follow ${Username}`}
           </Menu.Item>
+        )}
+        <Menu.Item
+          onClick={() => {
+            if (navigator.share) {
+              navigator.share({
+                title: "Share Post",
+                url: `https://momos.ga/Post/${Username}/${postId}`,
+              });
+            }
+          }}
+          icon={<Share size={14} />}
+        >
+          Share Post
+        </Menu.Item>
+
+        {UserInfo.userName === Username && (
+          <>
+            <Divider />
+            <Menu.Item
+              onClick={() => setModalOpen(true)}
+              color="red"
+              icon={<Trash size={14} />}
+            >
+              Delete Post
+            </Menu.Item>
+          </>
         )}
       </Menu>
       <Modal

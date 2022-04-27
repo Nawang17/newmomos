@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import moment from "moment";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { MdVerified } from "react-icons/md";
 const ProfileHeader = ({
   profileInfo,
   UserInfo,
@@ -97,6 +98,8 @@ const ProfileHeader = ({
 
           <div className="username">
             <p>{profileInfo.Username}</p>
+
+            {profileInfo.verified && <MdVerified color="green" size={14} />}
           </div>
           {profileInfo.description !== "no" && (
             <div className="description">

@@ -6,10 +6,12 @@ import { useHistory } from "react-router-dom";
 import { UserContext } from "../context/User";
 import { LikePost } from "../functions/LikePost";
 import moment from "moment";
-
+import { MdVerified } from "react-icons/md";
+import axios from "axios";
 const Posts = ({ posts, LikedPosts, setPosts, setLikePosts }) => {
   const { UserInfo, setError, setErrorMessage } = useContext(UserContext);
   const history = useHistory();
+
   return (
     <>
       {posts.map((value) => {
@@ -27,12 +29,12 @@ const Posts = ({ posts, LikedPosts, setPosts, setLikePosts }) => {
             <div className="right">
               <div className="header">
                 <div className="headerLeft">
-                  <div className="username">
-                    <p
-                      onClick={() => history.push(`/Profile/${value.Username}`)}
-                    >
-                      {value.Username}
-                    </p>
+                  <div
+                    onClick={() => history.push(`/Profile/${value.Username}`)}
+                    className="username"
+                  >
+                    <p>{value.Username}</p>
+                    {value.verified && <MdVerified color="green" size={14} />}
                   </div>
                   <div className="date">
                     {moment(value.createdAt).format("MMMM Do") ===

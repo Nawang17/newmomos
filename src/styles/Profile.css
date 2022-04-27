@@ -14,6 +14,11 @@
   gap: 12px;
   padding-top: 15px;
 }
+.username {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+}
 .profileTop {
   display: flex;
   justify-content: space-between;

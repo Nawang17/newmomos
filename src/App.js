@@ -10,6 +10,7 @@ import Comment from "./pages/Comment";
 import { ErrorAlert } from "./Components/ErrorAlert";
 import Notifications from "./pages/Notifications";
 import Profile from "./pages/Profile";
+import axios from "axios";
 function App() {
   const [UserInfo, setUserInfo] = useState({
     userName: "",
@@ -20,6 +21,7 @@ function App() {
   const [Error, setError] = useState(false);
   const [ErrorMessage, setErrorMessage] = useState("");
   const [path, setpath] = useState("momos");
+  const [following, setFollowing] = useState([]);
   useEffect(() => {
     validUser().then((res) => {
       if (res.data.validUser) {
@@ -30,6 +32,13 @@ function App() {
 
           verified: res.data.verified,
         });
+        axios
+          .get(
+            `https://momofirstapi.herokuapp.com/Profile/followingData/${res.data.username}`
+          )
+          .then((res) => {
+            setFollowing(res.data.following);
+          });
       } else {
         setUserInfo({
           userName: "",
@@ -53,6 +62,8 @@ function App() {
           setpath,
           setError,
           setErrorMessage,
+          following,
+          setFollowing,
         }}
       >
         <Router>
