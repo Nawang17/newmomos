@@ -70,7 +70,11 @@ const BurgerMenu = () => {
           </>
         )}
       </Drawer>
-      <Menu onClick={() => setOpened(true)} />
+      <Menu
+        onClick={() => {
+          UserInfo.loginStatus && setOpened(true);
+        }}
+      />
       <Modal
         opened={modalOpen}
         onClose={() => setModalOpen(false)}
