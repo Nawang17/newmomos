@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import "../styles/ShowComment.css";
-import { Modal, Button, Textarea, Loader } from "@mantine/core";
+import { Modal, Button, Textarea } from "@mantine/core";
 
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../context/User";

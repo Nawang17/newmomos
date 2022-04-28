@@ -1,5 +1,5 @@
 import React from "react";
-import { Bell, Home, Menu, MessageCircle2, Plus } from "tabler-icons-react";
+import { Bell, Home, MessageCircle2 } from "tabler-icons-react";
 import "../styles/Bottomnav.css";
 import { useHistory } from "react-router-dom";
 import BurgerMenu from "./BurgerMenu";

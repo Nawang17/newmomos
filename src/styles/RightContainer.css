@@ -34,3 +34,17 @@
   height: 35px;
   border-radius: 50%;
 }
+.footer {
+  color: rgb(94, 92, 92);
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+  padding-top: 40px;
+}
+.footerlinks {
+  cursor: pointer;
+  display: flex;
+
+  gap: 20px;
+}

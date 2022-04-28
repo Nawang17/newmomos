@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/Topnav.css";
-import { ArrowNarrowLeft, Motorbike } from "tabler-icons-react";
+import { ArrowNarrowLeft } from "tabler-icons-react";
 import ProfileDrawer from "./ProfileDrawer";
 import { UserContext } from "../context/User";
 import Login from "./Login";

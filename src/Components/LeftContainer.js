@@ -2,9 +2,7 @@ import React from "react";
 import {
   Bike,
   Bell,
-  BrandHipchat,
-  SquarePlus,
-  Lock,
+
   Logout,
 } from "tabler-icons-react";
 import { Modal, Button } from "@mantine/core";

@@ -1,13 +1,13 @@
 import { useState, useContext } from "react";
 import { Drawer } from "@mantine/core";
 import "../styles/Drawer.css";
-import { Settings, User, Logout, Menu, Moon } from "tabler-icons-react";
+import { User, Logout, Menu } from "tabler-icons-react";
 import { UserContext } from "../context/User";
 import { LogoutUser } from "../functions/Logout";
 import Login from "./Login";
-import { BsFillPersonPlusFill } from "react-icons/bs";
+import { Modal, Button } from "@mantine/core";
 
-import { HiOutlineLogin } from "react-icons/hi";
+import { BsFillPersonPlusFill } from "react-icons/bs";
 
 import { useHistory } from "react-router-dom";
 import RegisterModal from "./RegisterModal";
@@ -15,6 +15,8 @@ const BurgerMenu = () => {
   const history = useHistory();
   const [opened, setOpened] = useState(false);
   const { UserInfo, setUserInfo } = useContext(UserContext);
+  const [modalOpen, setModalOpen] = useState(false);
+
   return (
     <>
       <Drawer
@@ -38,11 +40,11 @@ const BurgerMenu = () => {
                 <User size={26} />
                 <p>Profile</p>
               </div>
-              <div className="menuItem">
+              {/* <div className="menuItem">
                 <Settings size={26} />
                 <p>Settings</p>
-              </div>
-              <div onClick={() => LogoutUser(setUserInfo)} className="menuItem">
+              </div> */}
+              <div onClick={() => setModalOpen(true)} className="menuItem">
                 <Logout size={26} />
                 <p>Logout</p>
               </div>{" "}
@@ -52,9 +54,8 @@ const BurgerMenu = () => {
           <>
             <div className="menu">
               <div className="menuItem">
-                <HiOutlineLogin size={28} />
-
                 <Login />
+                <p>Login</p>
               </div>
               <div className="menuItem">
                 <BsFillPersonPlusFill size={28} />
@@ -70,6 +71,33 @@ const BurgerMenu = () => {
         )}
       </Drawer>
       <Menu onClick={() => setOpened(true)} />
+      <Modal
+        opened={modalOpen}
+        onClose={() => setModalOpen(false)}
+        title="Logout"
+      >
+        <p>Are you sure you want to Logout?</p>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            gap: "15px",
+            paddingTop: "10px",
+          }}
+        >
+          <Button onClick={() => setModalOpen(false)}>Cancel</Button>
+          <Button
+            color="red"
+            onClick={() => {
+              LogoutUser(setUserInfo);
+
+              setModalOpen(false);
+            }}
+          >
+            Logout
+          </Button>
+        </div>
+      </Modal>
     </>
   );
 };

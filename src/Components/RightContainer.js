@@ -7,14 +7,8 @@ import { MdVerified } from "react-icons/md";
 import { useHistory } from "react-router-dom";
 const RightContainer = () => {
   const history = useHistory();
-  const {
-    UserInfo,
-    setUserInfo,
-    following,
-    setFollowing,
-    setError,
-    setErrorMessage,
-  } = useContext(UserContext);
+  const { UserInfo, following, setFollowing, setError, setErrorMessage } =
+    useContext(UserContext);
   const [suggestedUsers, setSuggestedUsers] = useState([]);
   useEffect(() => {
     axios
@@ -95,6 +89,28 @@ const RightContainer = () => {
               </div>
             );
           })}
+      </div>
+      <div className="footer">
+        <div className="footerlinks">
+          <div className="footeritem">About</div>
+          <div
+            onClick={() => {
+              window.open("https://github.com/Nawang17");
+            }}
+            className="footeritem"
+          >
+            Github
+          </div>
+          <div
+            onClick={() => {
+              window.open("https://nawang.netlify.app/");
+            }}
+            className="footeritem"
+          >
+            Projects
+          </div>
+        </div>
+        <div>© 2022 Momos by Nawang</div>
       </div>
     </div>
   );
