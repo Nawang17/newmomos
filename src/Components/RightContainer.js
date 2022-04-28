@@ -57,7 +57,10 @@ const RightContainer = () => {
         {suggestedUsers
           .slice(0, 5)
           .filter((val) => {
-            return !following.includes(val.Username);
+            return (
+              !following.includes(val.Username) &&
+              UserInfo.userName !== val.Username
+            );
           })
           .map((val, i) => {
             return (
