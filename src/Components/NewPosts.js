@@ -1,10 +1,10 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Modal, Button, Textarea, Loader } from "@mantine/core";
-import { CircleX, Photo, Plus, X } from "tabler-icons-react";
+import { CircleX, Photo, Plus, SquarePlus } from "tabler-icons-react";
 import { UserContext } from "../context/User";
 import axios from "axios";
-const NewPosts = ({ setPosts }) => {
-  const { UserInfo } = useContext(UserContext);
+const NewPosts = () => {
+  const { UserInfo, setPosts } = useContext(UserContext);
   const [opened, setOpened] = useState(false);
   const [error, setError] = useState("");
   const [imgInfo, setimgInfo] = useState({});
@@ -12,6 +12,12 @@ const NewPosts = ({ setPosts }) => {
   const [loading, setloading] = useState(false);
   const [text, settext] = useState("");
   const [imagePreview, setImagePreview] = useState("");
+  const [mobile, setmobile] = useState(false);
+  useEffect(() => {
+    if (window.screen.width < 600) {
+      setmobile(true);
+    }
+  }, []);
   const closeFunc = () => {
     setOpened(false);
     setError("");
@@ -209,9 +215,18 @@ const NewPosts = ({ setPosts }) => {
           </div>
         )}
       </Modal>
-      <div onClick={() => setOpened(true)} className="newPosts">
-        <Plus />
-      </div>
+      {mobile ? (
+        <div onClick={() => setOpened(true)} className="newPosts">
+          <Plus />
+        </div>
+      ) : (
+        <div onClick={() => setOpened(true)} className="lnavItem">
+          <div className="lnavIcon">
+            <SquarePlus size={26} />
+          </div>
+          <div className="lnavText">New Post</div>
+        </div>
+      )}
     </>
   );
 };

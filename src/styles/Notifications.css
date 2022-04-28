@@ -1,5 +1,4 @@
 .Notifications {
-  margin-top: 43px;
   margin-bottom: 63px;
   font-size: 15px;
 }
@@ -30,4 +29,9 @@
 }
 .date {
   color: #747779;
+}
+@media only screen and (min-width: 600px) {
+  .Notifications {
+    margin-bottom: 0px;
+  }
 }

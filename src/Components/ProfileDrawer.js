@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Drawer } from "@mantine/core";
 import "../styles/Drawer.css";
 import { Settings, User, Logout } from "tabler-icons-react";
@@ -9,6 +9,7 @@ const ProfileDrawer = () => {
   const history = useHistory();
   const [opened, setOpened] = useState(false);
   const { UserInfo, setUserInfo } = useContext(UserContext);
+
   return (
     <>
       <Drawer
@@ -40,7 +41,11 @@ const ProfileDrawer = () => {
           </div>
         </div>
       </Drawer>
-      <div onClick={() => setOpened(true)} style={{ padding: "0px 10px" }}>
+      <div
+        className="profile-icon"
+        onClick={() => setOpened(true)}
+        style={{ padding: "0px 10px" }}
+      >
         <img
           loading="lazy"
           className="profileimg"

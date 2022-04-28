@@ -8,28 +8,34 @@ import { useHistory } from "react-router-dom";
 const Topnav = () => {
   const history = useHistory();
   const currentpath = window.location.pathname;
+  const [mobile, setmobile] = React.useState(false);
   const { UserInfo, path } = React.useContext(UserContext);
 
+  React.useEffect(() => {
+    if (window.screen.width < 600) {
+      setmobile(true);
+    }
+  }, []);
   return (
     <div className="topnav">
       <div className="logo">
-        {currentpath === "/" ? (
-          <Motorbike size={26} />
-        ) : (
+        {currentpath !== "/" && (
           <ArrowNarrowLeft onClick={() => history.goBack()} size={26} />
         )}
 
         <p>{path}</p>
       </div>
-      <div className="topnavright">
-        {currentpath === "/" ? (
-          UserInfo.loginStatus ? (
-            <ProfileDrawer />
-          ) : (
-            <Login />
-          )
-        ) : null}
-      </div>
+      {mobile && (
+        <div className="topnavright">
+          {currentpath === "/" ? (
+            UserInfo.loginStatus ? (
+              <ProfileDrawer />
+            ) : (
+              <Login />
+            )
+          ) : null}
+        </div>
+      )}
     </div>
   );
 };

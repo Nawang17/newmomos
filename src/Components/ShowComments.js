@@ -116,6 +116,7 @@ const ShowComments = ({ comments, setComments, setdeleting }) => {
 
                   <div className="postText"> {value.replyText}</div>
                   <div
+                    style={{ cursor: "pointer" }}
                     onClick={() => {
                       setOpened(true);
                       setreplyingto(value.name);
@@ -177,18 +178,19 @@ const ShowComments = ({ comments, setComments, setdeleting }) => {
                         }}
                       >
                         Replying to{" "}
-                        <strong
+                        <span
                           onClick={() =>
                             history.push(`/Profile/${val.repliedTo}`)
                           }
                           style={{ color: "black", cursor: "pointer" }}
                         >
                           {val.repliedTo}
-                        </strong>
+                        </span>
                       </p>
 
                       <div className="postText"> {val.replyText}</div>
                       <div
+                        style={{ cursor: "pointer" }}
                         onClick={() => {
                           setOpened(true);
                           setreplyingto(val.name);

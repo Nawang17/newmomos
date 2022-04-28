@@ -1,12 +1,14 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Loader, Modal } from "@mantine/core";
 import { Button, Input, InputWrapper, PasswordInput } from "@mantine/core";
 import { UserContext } from "../context/User";
 import { login } from "../apiEndpoints/apiEndpoints";
 import RegisterModal from "./RegisterModal";
+import { Lock } from "tabler-icons-react";
 const Login = () => {
   const { setUserInfo } = useContext(UserContext);
   const [opened, setOpened] = useState(false);
+  const [mobile, setmobile] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -18,6 +20,11 @@ const Login = () => {
     setUsername("");
     setPassword("");
   };
+  useEffect(() => {
+    if (window.screen.width < 600) {
+      setmobile(true);
+    }
+  }, []);
   const handlesumbit = () => {
     setloading(true);
     login(username, password)
@@ -112,15 +119,25 @@ const Login = () => {
           Try Demo Account
         </p>
       </Modal>
-      <div
-        style={{
-          color: "#1DA1F2",
-          cursor: "pointer",
-        }}
-        onClick={() => setOpened(true)}
-      >
-        Login
-      </div>
+      {!mobile && (
+        <div onClick={() => setOpened(true)} className="lnavItem">
+          <div className="lnavIcon">
+            <Lock size={26} />
+          </div>
+          <div className="lnavText">Login</div>
+        </div>
+      )}
+
+      {mobile && (
+        <div
+          style={{
+            cursor: "pointer",
+          }}
+          onClick={() => setOpened(true)}
+        >
+          Login
+        </div>
+      )}
     </>
   );
 };

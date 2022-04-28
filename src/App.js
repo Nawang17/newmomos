@@ -11,6 +11,8 @@ import { ErrorAlert } from "./Components/ErrorAlert";
 import Notifications from "./pages/Notifications";
 import Profile from "./pages/Profile";
 import axios from "axios";
+import LeftContainer from "./Components/LeftContainer";
+import RightContainer from "./Components/RightContainer";
 function App() {
   const [UserInfo, setUserInfo] = useState({
     userName: "",
@@ -19,6 +21,7 @@ function App() {
     verified: false,
   });
   const [Error, setError] = useState(false);
+  const [posts, setPosts] = useState([]);
   const [ErrorMessage, setErrorMessage] = useState("");
   const [path, setpath] = useState("momos");
   const [following, setFollowing] = useState([]);
@@ -52,8 +55,6 @@ function App() {
   }, []);
   return (
     <>
-      {Error && <ErrorAlert alertText={ErrorMessage} setError={setError} />}
-
       <UserContext.Provider
         value={{
           UserInfo,
@@ -64,18 +65,39 @@ function App() {
           setErrorMessage,
           following,
           setFollowing,
+          posts,
+          setPosts,
         }}
       >
+        {" "}
         <Router>
-          <Topnav />
-          <Switch>
-            <Route path="/" exact component={Home} />
-            <Route path="/Post/:username/:postid" exact component={Comment} />
-            <Route path="/Notifications" exact component={Notifications} />
-            <Route path="/Profile/:username" exact component={Profile} />
-          </Switch>
+          <div className="mainflexContainer">
+            <div className="leftflexContainer">
+              <LeftContainer />
+            </div>
 
-          <Bottomnav />
+            <div className="middleflexContainer">
+              <Topnav />
+              {Error && (
+                <ErrorAlert alertText={ErrorMessage} setError={setError} />
+              )}
+              <Switch>
+                <Route path="/" exact component={Home} />
+                <Route
+                  path="/Post/:username/:postid"
+                  exact
+                  component={Comment}
+                />
+                <Route path="/Notifications" exact component={Notifications} />
+                <Route path="/Profile/:username" exact component={Profile} />
+              </Switch>
+              <Bottomnav />
+            </div>
+
+            <div className="rightflexContainer">
+              <RightContainer />
+            </div>
+          </div>
         </Router>
       </UserContext.Provider>
     </>

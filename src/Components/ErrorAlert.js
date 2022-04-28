@@ -5,7 +5,7 @@ export const ErrorAlert = ({ setError, alertText }) => {
   return (
     <div
       style={{
-        position: "fixed",
+        position: "sticky",
         top: "4.5%",
         width: "100%",
         zIndex: "9999",

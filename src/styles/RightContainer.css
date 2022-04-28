@@ -1,0 +1,36 @@
+.RightContainermain {
+  padding: 20px 50px 20px 20px;
+}
+.rightcontainerheader {
+  padding-bottom: 20px;
+  font-weight: 500;
+}
+
+.accounts {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.account {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.accountname {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.accountleft {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 500;
+}
+.account img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}

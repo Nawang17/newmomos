@@ -1,6 +1,5 @@
 .Profile {
   background-color: rgb(255, 255, 255);
-  margin-top: 52px;
   margin-bottom: 63px;
   font-size: 15px;
 }
@@ -38,4 +37,9 @@
   display: flex;
   gap: 9px;
   cursor: pointer;
+}
+@media only screen and (min-width: 600px) {
+  .Profile {
+    margin-bottom: 0px;
+  }
 }

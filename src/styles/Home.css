@@ -1,6 +1,5 @@
 .Home {
   background-color: rgb(255, 255, 255);
-  margin-top: 52px;
   margin-bottom: 63px;
 }
 .loadMore {
@@ -43,4 +42,10 @@
   left: 0;
   top: 0;
   opacity: 0;
+}
+@media only screen and (min-width: 600px) {
+  .Home {
+    background-color: rgb(255, 255, 255);
+    margin-bottom: 0px;
+  }
 }

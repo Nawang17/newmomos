@@ -7,13 +7,18 @@ import { UserContext } from "../context/User";
 import { getHomePosts, loadMoreposts } from "../apiEndpoints/apiEndpoints";
 import NewPosts from "../Components/NewPosts";
 const Home = () => {
-  const { setpath, setError, setErrorMessage } = useContext(UserContext);
+  const { setpath, setError, setErrorMessage, posts, setPosts } =
+    useContext(UserContext);
   const [loading, setloading] = useState(false);
-  const [posts, setPosts] = useState([]);
+
   const [pageCount, setPageCount] = useState(0);
   const [postResultsCount, setpostResultsCount] = useState(0);
   const [LikedPosts, setLikePosts] = useState([]);
+  const [mobile, setmobile] = useState(false);
   useEffect(() => {
+    if (window.screen.width < 600) {
+      setmobile(true);
+    }
     setpath("momos");
     setloading(true);
 
@@ -32,9 +37,10 @@ const Home = () => {
 
   return (
     <>
-      <NewPosts setPosts={setPosts} />
       {!loading ? (
         <div className="Home">
+          {mobile && <NewPosts />}
+
           <Posts
             posts={posts}
             setPosts={setPosts}

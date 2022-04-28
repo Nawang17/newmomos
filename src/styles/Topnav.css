@@ -1,7 +1,7 @@
 .topnav {
   background-color: rgb(255, 255, 255);
   overflow: hidden;
-  position: fixed;
+  position: sticky;
   z-index: 1;
   top: 0;
   width: 100%;
@@ -27,3 +27,8 @@
   width: 30px;
   border-radius: 50%;
 }
+/* @media only screen and (min-width: 600px) {
+  .topnav {
+    display: none;
+  }
+} */

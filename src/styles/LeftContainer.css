@@ -1,0 +1,41 @@
+.LeftContainer {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 20px;
+  gap: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 18px;
+}
+.leftheader {
+  padding-bottom: 20px;
+}
+.lnavItems {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.lnavItem {
+  display: flex;
+  gap: 10px;
+}
+.lnavIcon img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+@media only screen and (max-width: 800px) {
+  .lnavText {
+    display: none;
+  }
+  .lnavItem {
+    justify-content: center;
+  }
+  .leftheader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
