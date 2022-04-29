@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  Bike,
-  Bell,
-
-  Logout,
-} from "tabler-icons-react";
+import { Bike, Bell, Logout, BrandHipchat } from "tabler-icons-react";
 import { Modal, Button } from "@mantine/core";
 import "../styles/LeftContainer.css";
 import { AiOutlineHome } from "react-icons/ai";
@@ -14,7 +9,7 @@ import { useHistory } from "react-router-dom";
 import { LogoutUser } from "../functions/Logout";
 import NewPosts from "./NewPosts";
 const LeftContainer = () => {
-  const { UserInfo, setUserInfo } = React.useContext(UserContext);
+  const { UserInfo, setUserInfo, path } = React.useContext(UserContext);
   const history = useHistory();
   const [modalOpen, setModalOpen] = React.useState(false);
 
@@ -25,19 +20,34 @@ const LeftContainer = () => {
           <Bike />
         </div>
         <div className="lnavItems">
-          <div onClick={() => history.push("/")} className="lnavItem">
+          <div
+            onClick={() => {
+              path === "momos"
+                ? window.scrollTo({ top: 0, behavior: "smooth" })
+                : history.push("/home");
+
+              history.push("/");
+            }}
+            className="lnavItem"
+          >
             <div className="lnavIcon">
               <AiOutlineHome size={26} />
             </div>
             <div className="lnavText">Home</div>
           </div>
-          {/* <div className="lnavItem">
-          <div className="lnavIcon">
-            <BrandHipchat size={26} />
-          </div>
-          <div className="lnavText">Chat</div>
-        </div> */}
+
           <NewPosts />
+          {/* <div
+            onClick={() => {
+              history.push("/Chat");
+            }}
+            className="lnavItem"
+          >
+            <div className="lnavIcon">
+              <BrandHipchat size={26} />
+            </div>
+            <div className="lnavText">Chat</div>
+          </div> */}
 
           <div
             onClick={() => history.push("/Notifications")}

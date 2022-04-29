@@ -56,28 +56,25 @@
 .Likes {
   display: flex;
   align-items: center;
-  color: #41596f;
+  align-items: center;
+
   gap: 5px;
   cursor: pointer;
 }
 
 .LikesActive {
   cursor: pointer;
+  align-items: center;
 
   display: flex;
   align-items: center;
-  color: red;
+  color: #f91880;
   gap: 5px;
-}
-.LikeLogo {
 }
 
 .Comments {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 5px;
   cursor: pointer;
-}
-
-.CommentLogo {
 }

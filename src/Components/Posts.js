@@ -7,6 +7,7 @@ import { UserContext } from "../context/User";
 import { LikePost } from "../functions/LikePost";
 import moment from "moment";
 import { MdVerified } from "react-icons/md";
+import { RiHeart3Line, RiHeart3Fill } from "react-icons/ri";
 const Posts = ({ posts, LikedPosts, setPosts, setLikePosts }) => {
   const { UserInfo, setError, setErrorMessage } = useContext(UserContext);
   const history = useHistory();
@@ -81,11 +82,12 @@ const Posts = ({ posts, LikedPosts, setPosts, setLikePosts }) => {
                     LikedPosts.includes(value.id) ? "LikesActive" : "Likes"
                   }
                 >
-                  <Heart
-                    fill={LikedPosts.includes(value.id) ? "red" : "none"}
-                    className="LikeLogo"
-                    size={22}
-                  />
+                  {LikedPosts.includes(value.id) ? (
+                    <RiHeart3Fill className="LikeLogo" size={20} />
+                  ) : (
+                    <RiHeart3Line className="LikeLogo" size={20} />
+                  )}
+
                   <div className="likeCount">{value.Likes.length}</div>
                 </div>
                 <div
@@ -94,7 +96,7 @@ const Posts = ({ posts, LikedPosts, setPosts, setLikePosts }) => {
                   }}
                   className="Comments"
                 >
-                  <Message2 className="CommentLogo" size={22} />
+                  <Message2 className="CommentLogo" size={20} />
                   <div className="CommentCount">{value.Comments.length}</div>
                 </div>
               </div>
