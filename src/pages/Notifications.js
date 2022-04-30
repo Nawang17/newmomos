@@ -16,6 +16,8 @@ const Notifications = () => {
   const [notiCount, setnotiCount] = useState(0);
   const [pageCount, setpageCount] = useState(0);
   useEffect(() => {
+    setError(false);
+
     setpath("Notifications");
     setloading(true);
     UserInfo.loginStatus
@@ -62,7 +64,7 @@ const Notifications = () => {
                   </div>
                 );
               })}
-              {notifications.length < notiCount && (
+              {notifications.length < notiCount ? (
                 <div
                   onClick={() => {
                     setpageCount((prev) => prev + 1);
@@ -77,6 +79,8 @@ const Notifications = () => {
                 >
                   Load more Notifications
                 </div>
+              ) : (
+                <div className="loadMore">The End</div>
               )}
             </div>
           ) : null

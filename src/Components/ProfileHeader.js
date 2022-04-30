@@ -1,11 +1,13 @@
 import { Button, Modal } from "@mantine/core";
 import { useEffect, useState } from "react";
-import { CalendarEvent } from "tabler-icons-react";
+import { CalendarEvent, User } from "tabler-icons-react";
 import { useParams } from "react-router-dom";
 import moment from "moment";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { MdVerified } from "react-icons/md";
+import { Badge } from "@mantine/core";
+
 const ProfileHeader = ({
   profileInfo,
   UserInfo,
@@ -13,6 +15,7 @@ const ProfileHeader = ({
   setErrorMessage,
   Following,
   setFollowing,
+  exists,
 }) => {
   const history = useHistory();
   const { username } = useParams();
@@ -82,28 +85,36 @@ const ProfileHeader = ({
     "
           >
             <img className="profileImage" src={profileInfo.Image} alt="" />
-            <div>
-              {username !== UserInfo.userName &&
-                (!isFollowing ? (
-                  <Button onClick={() => followuser()} radius={25}>
-                    Follow
-                  </Button>
-                ) : (
-                  <Button
-                    onClick={() => followuser()}
-                    variant="outline"
-                    radius={25}
-                  >
-                    Following
-                  </Button>
-                ))}
-            </div>
+            {exists && (
+              <div>
+                {username !== UserInfo.userName &&
+                  (!isFollowing ? (
+                    <Button onClick={() => followuser()} radius={25}>
+                      Follow
+                    </Button>
+                  ) : (
+                    <Button
+                      onClick={() => followuser()}
+                      variant="outline"
+                      radius={25}
+                    >
+                      Following
+                    </Button>
+                  ))}
+              </div>
+            )}
           </div>
 
           <div className="username">
             <p>{profileInfo.Username}</p>
-
             {profileInfo.verified && <MdVerified color="green" size={14} />}
+            {following.some((e) => e.following === UserInfo.userName) && (
+              <div style={{ marginLeft: "3px" }}>
+                <Badge color="gray" size="sm">
+                  Follows you
+                </Badge>
+              </div>
+            )}
           </div>
           {profileInfo.description !== "no" && (
             <div className="description">

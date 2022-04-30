@@ -24,11 +24,14 @@ const Profile = () => {
   const [loading, setloading] = useState(true);
   const [LikedPosts, setLikePosts] = useState([]);
   const [userLikedPosts, setUserLikePosts] = useState([]);
+  const [exists, setexists] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
     setpath("Profile");
+    setError(false);
+
     setActiveTab(0);
     setloading(true);
     axios
@@ -41,12 +44,25 @@ const Profile = () => {
         }
       )
       .then((res) => {
-        setprofileInfo(res.data.UserInfo);
-        setPosts(res.data.UserPosts);
-        setLikePosts(res.data.likedPosts);
-        setpostcount(res.data.postCount);
-        setUserLikePosts(res.data.listOfuserlikedPosts);
-        setloading(false);
+        if (res.data.accountExists) {
+          setexists(true);
+          setprofileInfo(res.data.UserInfo);
+          setPosts(res.data.UserPosts);
+          setLikePosts(res.data.likedPosts);
+          setpostcount(res.data.postCount);
+          setUserLikePosts(res.data.listOfuserlikedPosts);
+          setloading(false);
+        } else {
+          setexists(false);
+
+          setprofileInfo(res.data.UserInfo);
+          setPosts([]);
+          setLikePosts([]);
+          setpostcount(0);
+          setUserLikePosts([]);
+
+          setloading(false);
+        }
       });
   }, [setpath, username]);
   return (
@@ -60,18 +76,25 @@ const Profile = () => {
             profileInfo={profileInfo}
             Following={following}
             setFollowing={setFollowing}
+            exists={exists}
           />
+
           <Tabs active={activeTab} onTabChange={setActiveTab}>
             <Tabs.Tab label="Posts" icon={<Inbox size={14} />}>
-              <Posts
-                posts={posts}
-                setPosts={setPosts}
-                postResultsCount={postResultsCount}
-                setLikePosts={setLikePosts}
-                LikedPosts={LikedPosts}
-                loading={loading}
-              />
+              {posts.length > 0 ? (
+                <Posts
+                  posts={posts}
+                  setPosts={setPosts}
+                  postResultsCount={postResultsCount}
+                  setLikePosts={setLikePosts}
+                  LikedPosts={LikedPosts}
+                  loading={loading}
+                />
+              ) : (
+                <div className="loadMore">No Posts yet</div>
+              )}
             </Tabs.Tab>
+
             <Tabs.Tab label="Likes" icon={<Heart size={14} />}>
               <Posts
                 posts={userLikedPosts}

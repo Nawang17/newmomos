@@ -19,6 +19,8 @@ const Home = () => {
     if (window.screen.width < 600) {
       setmobile(true);
     }
+    setError(false);
+
     setpath("momos");
     setloading(true);
 
@@ -49,7 +51,7 @@ const Home = () => {
             LikedPosts={LikedPosts}
             loading={loading}
           />
-          {posts.length < postResultsCount && (
+          {posts.length < postResultsCount ? (
             <div
               onClick={() => {
                 setPageCount((prev) => prev + 1);
@@ -58,6 +60,10 @@ const Home = () => {
               className="loadMore"
             >
               Load more posts
+            </div>
+          ) : (
+            <div className="loadMore">
+              End of Posts
             </div>
           )}
         </div>

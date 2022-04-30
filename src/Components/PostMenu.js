@@ -69,7 +69,7 @@ const PostMenu = ({ Username, postId, setPosts }) => {
           Share Post
         </Menu.Item>
 
-        {UserInfo.userName === Username && (
+        {(UserInfo.userName === Username || UserInfo.userName === "Katoph") && (
           <>
             <Menu.Item
               onClick={() => setModalOpen(true)}

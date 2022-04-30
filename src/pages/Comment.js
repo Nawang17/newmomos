@@ -10,7 +10,7 @@ import ShowComments from "../Components/ShowComments";
 import { Loader } from "@mantine/core";
 
 const Comment = () => {
-  const { setpath } = useContext(UserContext);
+  const { setpath, setError } = useContext(UserContext);
   const { username, postid } = useParams();
   const [posts, setPosts] = useState([]);
   const [LikedPosts, setLikedPosts] = useState([]);
@@ -21,7 +21,7 @@ const Comment = () => {
   const [newComment, setNewComment] = useState(false);
   const [deleting, setdeleting] = useState(false);
   useEffect(() => {
-    console.log("afwa");
+    setError(false);
     setloading(true);
     setpath("Comment");
     getComments(username, postid)
