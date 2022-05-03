@@ -4,7 +4,14 @@ import { CircleX, Photo, Plus, SquarePlus } from "tabler-icons-react";
 import { UserContext } from "../context/User";
 import axios from "axios";
 const NewPosts = () => {
-  const { UserInfo, setPosts } = useContext(UserContext);
+  const {
+    UserInfo,
+    setPosts,
+    setsuccessText,
+    setSuccess,
+    setpostinfo,
+    setsuccessType,
+  } = useContext(UserContext);
   const [opened, setOpened] = useState(false);
   const [error, setError] = useState("");
   const [imgInfo, setimgInfo] = useState({});
@@ -98,6 +105,16 @@ const NewPosts = () => {
               } else {
                 closeFunc();
                 setPosts((prevState) => [res.data.newpost, ...prevState]);
+                setpostinfo({
+                  user: res.data.newpost.Username,
+                  postId: res.data.newpost.id,
+                });
+                setsuccessType("newPost");
+                setsuccessText("New Post Added Successfully");
+                setSuccess(true);
+                setTimeout(() => {
+                  setSuccess(false);
+                }, "10000");
               }
             })
             .catch((error) => {

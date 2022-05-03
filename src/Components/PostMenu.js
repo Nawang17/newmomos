@@ -17,8 +17,17 @@ const PostMenu = ({ Username, postId, setPosts }) => {
   const [modalOpen, setModalOpen] = React.useState(false);
 
   const history = useHistory();
-  const { UserInfo, setError, setErrorMessage, following, setFollowing } =
-    React.useContext(UserContext);
+  const {
+    UserInfo,
+    setError,
+    setErrorMessage,
+    following,
+    setFollowing,
+    setsuccessType,
+    setsuccessText,
+    setSuccess,
+    setpostinfo,
+  } = React.useContext(UserContext);
   const followuser = () => {
     if (UserInfo.loginStatus) {
       axios
@@ -36,8 +45,28 @@ const PostMenu = ({ Username, postId, setPosts }) => {
         .then((res) => {
           if (res.data.followed) {
             setFollowing((prev) => [...prev, Username]);
+            setsuccessType("follow");
+            setsuccessText(`You are now following ${Username}`);
+            setSuccess(true);
+            setpostinfo({
+              user: Username,
+              postId: "",
+            });
+            setTimeout(() => {
+              setSuccess(false);
+            }, "5000");
           } else {
             setFollowing((prev) => prev.filter((item) => item !== Username));
+            setsuccessType("follow");
+            setsuccessText(`You are no longer following ${Username}`);
+            setSuccess(true);
+            setpostinfo({
+              user: Username,
+              postId: "",
+            });
+            setTimeout(() => {
+              setSuccess(false);
+            }, "5000");
           }
         });
     } else {
@@ -49,7 +78,16 @@ const PostMenu = ({ Username, postId, setPosts }) => {
     <>
       <Menu position="bottom">
         {UserInfo.userName !== Username && (
-          <Menu.Item onClick={() => followuser()} icon={<UserPlus size={14} />}>
+          <Menu.Item
+            onClick={() => {
+              followuser();
+
+              setTimeout(() => {
+                setError(false);
+              }, "7000");
+            }}
+            icon={<UserPlus size={14} />}
+          >
             {following.includes(Username)
               ? `Unfollow ${Username}`
               : `Follow ${Username}`}

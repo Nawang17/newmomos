@@ -1,5 +1,5 @@
 import { Button, Modal } from "@mantine/core";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { CalendarEvent, User } from "tabler-icons-react";
 import { useParams } from "react-router-dom";
 import moment from "moment";
@@ -7,6 +7,7 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { MdVerified } from "react-icons/md";
 import { Badge } from "@mantine/core";
+import { UserContext } from "../context/User";
 
 const ProfileHeader = ({
   profileInfo,
@@ -25,7 +26,8 @@ const ProfileHeader = ({
   const [opened, setOpened] = useState(false);
 
   const [openned, setOpenned] = useState(false);
-
+  const { setsuccessType, setsuccessText, setSuccess, setpostinfo } =
+    useContext(UserContext);
   useEffect(() => {
     axios
       .get(
@@ -62,7 +64,27 @@ const ProfileHeader = ({
 
             setisFollowing(true);
             setFollowing((prev) => [...prev, username]);
+            setsuccessType("follow");
+            setsuccessText(`You are now following ${username}`);
+            setSuccess(true);
+            setpostinfo({
+              user: username,
+              postId: "",
+            });
+            setTimeout(() => {
+              setSuccess(false);
+            }, "5000");
           } else {
+            setsuccessType("follow");
+            setsuccessText(`You are no longer following ${username}`);
+            setSuccess(true);
+            setpostinfo({
+              user: username,
+              postId: "",
+            });
+            setTimeout(() => {
+              setSuccess(false);
+            }, "5000");
             setfollowers((prev) =>
               prev.filter((item) => item.follower !== UserInfo.userName)
             );
@@ -89,12 +111,25 @@ const ProfileHeader = ({
               <div>
                 {username !== UserInfo.userName &&
                   (!isFollowing ? (
-                    <Button onClick={() => followuser()} radius={25}>
+                    <Button
+                      onClick={() => {
+                        followuser();
+                        setTimeout(() => {
+                          setError(false);
+                        }, "7000");
+                      }}
+                      radius={25}
+                    >
                       Follow
                     </Button>
                   ) : (
                     <Button
-                      onClick={() => followuser()}
+                      onClick={() => {
+                        followuser();
+                        setTimeout(() => {
+                          setError(false);
+                        }, "7000");
+                      }}
                       variant="outline"
                       radius={25}
                     >

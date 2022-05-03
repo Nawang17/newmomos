@@ -13,6 +13,8 @@ import Profile from "./pages/Profile";
 import axios from "axios";
 import LeftContainer from "./Components/LeftContainer";
 import RightContainer from "./Components/RightContainer";
+import { SuccessAlert } from "./Components/SuccessAlert";
+import About from "./pages/About";
 function App() {
   const [UserInfo, setUserInfo] = useState({
     userName: "",
@@ -21,6 +23,13 @@ function App() {
     verified: false,
   });
   const [Error, setError] = useState(false);
+  const [Success, setSuccess] = useState(false);
+  const [successText, setsuccessText] = useState("");
+  const [postinfo, setpostinfo] = useState({
+    user: "",
+    postId: "",
+  });
+  const [successType, setsuccessType] = useState("");
   const [posts, setPosts] = useState([]);
   const [ErrorMessage, setErrorMessage] = useState("");
   const [path, setpath] = useState("momos");
@@ -67,6 +76,11 @@ function App() {
           setFollowing,
           posts,
           setPosts,
+          setsuccessText,
+          setSuccess,
+          setpostinfo,
+          successType,
+          setsuccessType,
         }}
       >
         {" "}
@@ -78,6 +92,14 @@ function App() {
 
             <div className="middleflexContainer">
               <Topnav />
+              {Success && (
+                <SuccessAlert
+                  setSuccess={setSuccess}
+                  successText={successText}
+                  postinfo={postinfo}
+                  successType={successType}
+                />
+              )}
               {Error && (
                 <ErrorAlert alertText={ErrorMessage} setError={setError} />
               )}
@@ -90,6 +112,7 @@ function App() {
                 />
                 <Route path="/Notifications" exact component={Notifications} />
                 <Route path="/Profile/:username" exact component={Profile} />
+                <Route path="/About" exact component={About} />
               </Switch>
               <Bottomnav />
             </div>

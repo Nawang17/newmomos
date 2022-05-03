@@ -23,7 +23,14 @@ const Topnav = () => {
           <ArrowNarrowLeft onClick={() => history.goBack()} size={26} />
         )}
 
-        <p>{path}</p>
+        <p
+          style={{ cursor: "pointer" }}
+          onClick={() => {
+            path === "momos" && history.push("/About");
+          }}
+        >
+          {path}
+        </p>
       </div>
       {mobile && (
         <div className="topnavright">

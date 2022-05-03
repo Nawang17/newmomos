@@ -37,6 +37,9 @@ const CommentInput = ({ setNewComment }) => {
                   setNewComment
                 );
                 setReplyText("");
+                setTimeout(() => {
+                  setError(false);
+                }, "7000");
               }}
               color="blue"
               variant="filled"

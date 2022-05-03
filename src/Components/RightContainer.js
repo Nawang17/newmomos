@@ -7,8 +7,17 @@ import { MdVerified } from "react-icons/md";
 import { useHistory } from "react-router-dom";
 const RightContainer = () => {
   const history = useHistory();
-  const { UserInfo, following, setFollowing, setError, setErrorMessage } =
-    useContext(UserContext);
+  const {
+    UserInfo,
+    following,
+    setFollowing,
+    setError,
+    setErrorMessage,
+    setsuccessType,
+    setsuccessText,
+    setSuccess,
+    setpostinfo,
+  } = useContext(UserContext);
   const [suggestedUsers, setSuggestedUsers] = useState([]);
   useEffect(() => {
     axios
@@ -37,11 +46,31 @@ const RightContainer = () => {
         )
         .then((res) => {
           if (res.data.followed) {
+            setsuccessType("follow");
+            setsuccessText(`You are now following ${name}`);
+            setSuccess(true);
+            setpostinfo({
+              user: name,
+              postId: "",
+            });
+            setTimeout(() => {
+              setSuccess(false);
+            }, "5000");
             setSuggestedUsers((val) =>
               val.filter((user) => user.Username !== name)
             );
             setFollowing((val) => [...val, name]);
           } else {
+            setsuccessType("follow");
+            setsuccessText(`You are no longer following ${name}`);
+            setSuccess(true);
+            setpostinfo({
+              user: name,
+              postId: "",
+            });
+            setTimeout(() => {
+              setSuccess(false);
+            }, "5000");
             setFollowing((val) => val.filter((user) => user !== name));
           }
         });
@@ -95,7 +124,14 @@ const RightContainer = () => {
       </div>
       <div className="footer">
         <div className="footerlinks">
-          <div className="footeritem">About</div>
+          <div
+            onClick={() => {
+              history.push("/About");
+            }}
+            className="footeritem"
+          >
+            About
+          </div>
           <div
             onClick={() => {
               window.open("https://github.com/Nawang17");

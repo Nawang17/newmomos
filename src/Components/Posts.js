@@ -65,7 +65,7 @@ const Posts = ({ posts, LikedPosts, setPosts, setLikePosts }) => {
               )}
               <div className="postInsight">
                 <div
-                  onClick={() =>
+                  onClick={() => {
                     LikePost(
                       value.id,
                       value.Username,
@@ -76,8 +76,11 @@ const Posts = ({ posts, LikedPosts, setPosts, setLikePosts }) => {
                       UserInfo.loginStatus,
                       setError,
                       setErrorMessage
-                    )
-                  }
+                    );
+                    setTimeout(() => {
+                      setError(false);
+                    }, "7000");
+                  }}
                   className={
                     LikedPosts.includes(value.id) ? "LikesActive" : "Likes"
                   }
