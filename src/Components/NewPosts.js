@@ -119,7 +119,7 @@ const NewPosts = () => {
             })
             .catch((error) => {
               if (error.response) {
-                setError(error.response.data);
+                setError(error.message);
                 setloading(false);
               }
             });
