@@ -167,7 +167,7 @@ const NewPosts = () => {
             alignItems: "center",
           }}
         >
-          <div>
+          {/* <div>
             <span class="upload-btn-wrapper">
               <div
                 style={{ display: "flex", alignItems: "center", gap: "5px" }}
@@ -188,7 +188,7 @@ const NewPosts = () => {
                 }}
               />
             </span>
-          </div>
+          </div> */}
           {loading ? (
             <Loader />
           ) : (
