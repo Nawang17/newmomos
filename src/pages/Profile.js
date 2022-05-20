@@ -96,14 +96,18 @@ const Profile = () => {
             </Tabs.Tab>
 
             <Tabs.Tab label="Likes" icon={<Heart size={14} />}>
-              <Posts
-                posts={userLikedPosts}
-                setPosts={setUserLikePosts}
-                postResultsCount={postResultsCount}
-                setLikePosts={setLikePosts}
-                LikedPosts={LikedPosts}
-                loading={loading}
-              />
+              {userLikedPosts.length > 0 ? (
+                <Posts
+                  posts={userLikedPosts}
+                  setPosts={setUserLikePosts}
+                  postResultsCount={postResultsCount}
+                  setLikePosts={setLikePosts}
+                  LikedPosts={LikedPosts}
+                  loading={loading}
+                />
+              ) : (
+                <div className="loadMore">No Liked Posts yet</div>
+              )}
             </Tabs.Tab>
           </Tabs>
         </>

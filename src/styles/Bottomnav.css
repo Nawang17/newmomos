@@ -1,20 +1,22 @@
 .Bottomnav {
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   overflow: hidden;
   position: fixed;
   z-index: 1;
   bottom: 0;
   width: 100%;
-  padding: 13px 25px;
+
   border-top: 1px solid #e1e8ed;
   color: #14171a;
 }
 .navItems {
+  padding: 0.9rem;
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+  gap: 8rem;
 }
-.navItem {
-}
+
 .navItem:hover {
   color: rgb(83, 76, 76);
 }

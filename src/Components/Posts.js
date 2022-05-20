@@ -1,5 +1,5 @@
-import { useState, useContext } from "react";
-import { Heart, Message2 } from "tabler-icons-react";
+import { useContext } from "react";
+import { Message2 } from "tabler-icons-react";
 import "../styles/Posts.css";
 import PostMenu from "./PostMenu";
 import { useHistory } from "react-router-dom";

@@ -25,14 +25,14 @@ const About = () => {
         demonstrate my understanding of full stack development.
       </p>
       <h3>Features </h3>
-      <li>Login / Register (Google login option included)</li>
+      <li>Login / Register</li>
       <li>Creating a new post (text, Image)</li>
       <li>Liking and replying to other users posts</li>
       <li>User Following</li>
       <li>Notifications</li>
 
-      <li>Live chat</li>
-      <li>Dark mode</li>
+      {/* <li>Live chat</li>
+      <li>Dark mode</li> */}
       <h3>Technologies</h3>
       <li> Client - React</li>
       <li>Server - Node, Express, SocketIO</li>

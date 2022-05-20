@@ -26,7 +26,7 @@ const Topnav = () => {
         <p
           style={{ cursor: "pointer" }}
           onClick={() => {
-            path === "momos" && history.push("/About");
+            path === "momos" && history.push("/");
           }}
         >
           {path}
