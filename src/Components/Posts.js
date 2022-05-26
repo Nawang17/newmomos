@@ -101,6 +101,7 @@ const Posts = ({ posts, LikedPosts, setPosts, setLikePosts }) => {
                 >
                   <Message2 className="CommentLogo" size={20} />
                   <div className="CommentCount">{value.Comments.length}</div>
+                  <div>Comments</div>
                 </div>
               </div>
             </div>
