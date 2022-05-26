@@ -16,7 +16,7 @@
   align-items: center;
   gap: 10px;
   padding: 15px 18px;
-  border-bottom: 1px solid #e1e8ed;
+  border-bottom: 1px solid rgb(206, 210, 214);
 
   background-color: rgb(211, 234, 248);
 }
