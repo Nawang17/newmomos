@@ -80,11 +80,30 @@ const Login = () => {
           label="Password"
           required
         />
+
+        {loading ? (
+          <Loader />
+        ) : (
+          <Button style={{ width: "100%" }} onClick={() => handlesumbit()}>
+            Login
+          </Button>
+        )}
+        <p
+          style={{
+            textAlign: "center",
+            marginTop: "15px",
+            fontSize: "13px",
+          }}
+        >
+          OR
+        </p>
+        <GoogleLogins />
         <div
           style={{
             display: "flex",
             alignItems: "center",
-            justifyContent: "space-between",
+            justifyContent: "center",
+            marginTop: "20px",
           }}
         >
           <div
@@ -98,22 +117,7 @@ const Login = () => {
           >
             <p> Don't have an account?</p> <RegisterModal />
           </div>
-          {loading ? (
-            <Loader />
-          ) : (
-            <Button onClick={() => handlesumbit()}>Login</Button>
-          )}
         </div>
-        <p
-          style={{
-            textAlign: "center",
-            marginTop: "15px",
-            fontSize: "13px",
-          }}
-        >
-          OR
-        </p>
-        <GoogleLogins />
 
         {/* <p
           style={{

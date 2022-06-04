@@ -21,10 +21,8 @@
 }
 .loginText {
   font-size: 14px;
-
-  color: black;
 }
 .google-login:hover {
-  background-color: #d0d9e8;
+  background-color: #4285f4;
   color: white;
 }
