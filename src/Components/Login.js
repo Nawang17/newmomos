@@ -82,7 +82,9 @@ const Login = () => {
         />
 
         {loading ? (
-          <Loader />
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <Loader />
+          </div>
         ) : (
           <Button style={{ width: "100%" }} onClick={() => handlesumbit()}>
             Login
