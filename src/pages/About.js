@@ -10,7 +10,7 @@ const About = () => {
     <div
       style={{
         display: "flex",
-
+        fontSize: "15px",
         flexDirection: "column",
         gap: "20px",
         padding: "13px 20px",
@@ -19,13 +19,13 @@ const About = () => {
         marginBottom: "63px",
       }}
     >
-      <p style={{ lineHeight: "25px" }}>
+      <p style={{ lineHeight: "24px" }}>
         Welcome to Momos, a Social Network webapp. My name is Nawang, and I am
         the developer of this website. This is a project I created to
         demonstrate my understanding of full stack development.
       </p>
       <h3>Features </h3>
-      <li>Login / Register</li>
+      <li>Login / Register (Google Login option included)</li>
       <li>Creating a new post (text, Image)</li>
       <li>Liking and replying to other users posts</li>
       <li>User Following</li>

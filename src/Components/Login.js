@@ -5,6 +5,7 @@ import { UserContext } from "../context/User";
 import { login } from "../apiEndpoints/apiEndpoints";
 import RegisterModal from "./RegisterModal";
 import { Lock } from "tabler-icons-react";
+import GoogleLogins from "./GoogleLogins";
 const Login = () => {
   const { setUserInfo } = useContext(UserContext);
   const [opened, setOpened] = useState(false);
@@ -97,15 +98,24 @@ const Login = () => {
           >
             <p> Don't have an account?</p> <RegisterModal />
           </div>
-
           {loading ? (
             <Loader />
           ) : (
             <Button onClick={() => handlesumbit()}>Login</Button>
           )}
         </div>
-
         <p
+          style={{
+            textAlign: "center",
+            marginTop: "15px",
+            fontSize: "13px",
+          }}
+        >
+          OR
+        </p>
+        <GoogleLogins />
+
+        {/* <p
           style={{
             fontSize: "14px",
             color: "#1DA1F2",
@@ -117,7 +127,7 @@ const Login = () => {
           }}
         >
           Try Demo Account
-        </p>
+        </p> */}
       </Modal>
       {!mobile && (
         <div onClick={() => setOpened(true)} className="lnavItem">

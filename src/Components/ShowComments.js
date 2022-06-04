@@ -174,10 +174,11 @@ const ShowComments = ({ comments, setComments, setdeleting }) => {
                         style={{
                           color: "grey",
                           fontWeight: "normal",
-                          fontSize: "14px",
+                          fontSize: "13px",
+                          paddingBottom: "3px",
                         }}
                       >
-                        Replying to{" "}
+                        Replying to
                         <span
                           onClick={() =>
                             history.push(`/Profile/${val.repliedTo}`)
