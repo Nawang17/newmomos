@@ -41,12 +41,12 @@ const GoogleLogins = () => {
         <GoogleLogin
           clientId="933476491467-ou90tpjuc8gm4mbenn907d6jq4td1hkd.apps.googleusercontent.com"
           render={(renderProps) => (
-            <div
-              className="container"
-              onClick={renderProps.onClick}
-              disabled={renderProps.disabled}
-            >
-              <div className="google-login">
+            <div className="container">
+              <div
+                onClick={renderProps.onClick}
+                disabled={renderProps.disabled}
+                className="google-login"
+              >
                 <div className="googleicon">
                   <img
                     className="google-icon"
@@ -54,7 +54,7 @@ const GoogleLogins = () => {
                     src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
                   />
                 </div>
-                <div className="loginText"> Login with Google</div>
+                <div className="loginText"> Sign in with Google</div>
               </div>
             </div>
           )}

@@ -80,32 +80,11 @@ const Login = () => {
           label="Password"
           required
         />
-
-        {loading ? (
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <Loader />
-          </div>
-        ) : (
-          <Button style={{ width: "100%" }} onClick={() => handlesumbit()}>
-            Login
-          </Button>
-        )}
-        <p
-          style={{
-            textAlign: "center",
-            marginTop: "15px",
-            fontSize: "13px",
-          }}
-        >
-          OR
-        </p>
-        <GoogleLogins />
         <div
           style={{
             display: "flex",
             alignItems: "center",
-            justifyContent: "center",
-            marginTop: "20px",
+            justifyContent: "space-between",
           }}
         >
           <div
@@ -119,21 +98,46 @@ const Login = () => {
           >
             <p> Don't have an account?</p> <RegisterModal />
           </div>
+          {loading ? (
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <Loader />
+            </div>
+          ) : (
+            <Button onClick={() => handlesumbit()}>Login</Button>
+          )}
         </div>
 
-        {/* <p
+        <p
+          className="or-text"
           style={{
-            fontSize: "14px",
-            color: "#1DA1F2",
-            cursor: "pointer",
-          }}
-          onClick={() => {
-            setUsername("Demo");
-            setPassword("Demo");
+            textAlign: "center",
+            marginTop: "15px",
+            marginBottom: "15px",
+
+            fontSize: "13px",
           }}
         >
-          Try Demo Account
-        </p> */}
+          OR
+        </p>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "5px",
+          }}
+        >
+          <GoogleLogins />
+          <div
+            className="demo"
+            onClick={() => {
+              setUsername("Demo");
+              setPassword("Demo");
+            }}
+          >
+            Try Demo Account
+          </div>
+        </div>
       </Modal>
       {!mobile && (
         <div onClick={() => setOpened(true)} className="lnavItem">
