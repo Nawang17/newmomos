@@ -8,7 +8,7 @@ export const DeleteComment = (
 ) => {
   axios
     .delete(
-      `https://momofirstapi.herokuapp.com/Comment/deleteComment/${postId}/${Username}`,
+      `http://localhost:3001/Comment/deleteComment/${postId}/${Username}`,
 
       {
         headers: {

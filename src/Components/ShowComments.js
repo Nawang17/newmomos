@@ -32,7 +32,7 @@ const ShowComments = ({ comments, setComments, setdeleting }) => {
       ? text
         ? axios
             .post(
-              "https://momofirstapi.herokuapp.com/NestedComments/addComment",
+              "http://localhost:3001/NestedComments/addComment",
               {
                 CommentId: commentid,
                 replyText: text,

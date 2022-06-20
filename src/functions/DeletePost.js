@@ -9,7 +9,7 @@ export const DeletePost = (
 ) => {
   axios
     .delete(
-      `https://momofirstapi.herokuapp.com/Post/deletePost/${postId}/${Username}`,
+      `http://localhost:3001/Post/deletePost/${postId}/${Username}`,
 
       {
         headers: {

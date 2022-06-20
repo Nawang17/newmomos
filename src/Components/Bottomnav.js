@@ -1,11 +1,11 @@
 import React from "react";
-import { Heart, Home, Menu } from "tabler-icons-react";
 import "../styles/Bottomnav.css";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../context/User";
-import { RiHeart3Line, RiHeart3Fill } from "react-icons/ri";
+import { RiHeart3Line } from "react-icons/ri";
 import { GrHomeRounded } from "react-icons/gr";
 import { HiMenuAlt4 } from "react-icons/hi";
+import { Mail } from "tabler-icons-react";
 const Bottomnav = () => {
   const { path } = React.useContext(UserContext);
   const history = useHistory();
@@ -28,13 +28,22 @@ const Bottomnav = () => {
         <div onClick={() => history.push("/Notifications")} className="navItem">
           <RiHeart3Line size={22} />
         </div>
-        <div
+
+        {/* <div
           onClick={() => {
             history.push("/About");
           }}
           className="navItem"
         >
           <HiMenuAlt4 size={22} />
+        </div> */}
+        <div
+          onClick={() => {
+            history.push("/Messages");
+          }}
+          className="navItem"
+        >
+          <Mail size={22} />
         </div>
       </div>
     </div>

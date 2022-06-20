@@ -15,6 +15,8 @@ import LeftContainer from "./Components/LeftContainer";
 import RightContainer from "./Components/RightContainer";
 import { SuccessAlert } from "./Components/SuccessAlert";
 import About from "./pages/About";
+import Chatlist from "./pages/Chatlist";
+import Message from "./pages/Message";
 function App() {
   const [UserInfo, setUserInfo] = useState({
     userName: "",
@@ -46,7 +48,7 @@ function App() {
         });
         axios
           .get(
-            `https://momofirstapi.herokuapp.com/Profile/followingData/${res.data.username}`
+            `http://localhost:3001/Profile/followingData/${res.data.username}`
           )
           .then((res) => {
             setFollowing(res.data.following);
@@ -113,6 +115,8 @@ function App() {
                 <Route path="/Notifications" exact component={Notifications} />
                 <Route path="/Profile/:username" exact component={Profile} />
                 <Route path="/About" exact component={About} />
+                <Route path="/Messages" exact component={Chatlist} />
+                <Route path="/Message/:username" exact component={Message} />
               </Switch>
               <Bottomnav />
             </div>

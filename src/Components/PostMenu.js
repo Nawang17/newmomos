@@ -32,7 +32,7 @@ const PostMenu = ({ Username, postId, setPosts }) => {
     if (UserInfo.loginStatus) {
       axios
         .post(
-          "https://momofirstapi.herokuapp.com/Profile/follow",
+          "http://localhost:3001/Profile/follow",
           {
             following: Username,
           },

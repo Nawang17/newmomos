@@ -8,7 +8,7 @@ const GoogleLogins = () => {
   const { setUserInfo } = useContext(UserContext);
   const GoogleSuccess = async (res) => {
     axios
-      .post("https://momofirstapi.herokuapp.com/authenticate/googleauth", {
+      .post("http://localhost:3001/authenticate/googleauth", {
         Username: res.profileObj.name,
         email: res.profileObj.email,
         Image: res.profileObj.imageUrl,

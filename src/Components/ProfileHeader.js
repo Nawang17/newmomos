@@ -31,7 +31,7 @@ const ProfileHeader = ({
   useEffect(() => {
     axios
       .get(
-        `https://momofirstapi.herokuapp.com/Profile/followData/${username}/${
+        `http://localhost:3001/Profile/followData/${username}/${
           UserInfo.userName || null
         }`
       )
@@ -45,7 +45,7 @@ const ProfileHeader = ({
     if (UserInfo.loginStatus) {
       axios
         .post(
-          "https://momofirstapi.herokuapp.com/Profile/follow",
+          "http://localhost:3001/Profile/follow",
           {
             following: username,
           },

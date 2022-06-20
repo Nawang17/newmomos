@@ -21,7 +21,7 @@ const RightContainer = () => {
   const [suggestedUsers, setSuggestedUsers] = useState([]);
   useEffect(() => {
     axios
-      .get("https://momofirstapi.herokuapp.com/Profile/suggestedUsers", {
+      .get("http://localhost:3001/Profile/suggestedUsers", {
         headers: {
           accessToken: localStorage.getItem("accessToken"),
         },
@@ -34,7 +34,7 @@ const RightContainer = () => {
     if (UserInfo.loginStatus) {
       axios
         .post(
-          "https://momofirstapi.herokuapp.com/Profile/follow",
+          "http://localhost:3001/Profile/follow",
           {
             following: name,
           },

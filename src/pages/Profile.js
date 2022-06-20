@@ -35,14 +35,11 @@ const Profile = () => {
     setActiveTab(0);
     setloading(true);
     axios
-      .get(
-        `https://momofirstapi.herokuapp.com/Profile/getProfile/${username}?page=0`,
-        {
-          headers: {
-            accessToken: localStorage.getItem("accessToken"),
-          },
-        }
-      )
+      .get(`http://localhost:3001/Profile/getProfile/${username}?page=0`, {
+        headers: {
+          accessToken: localStorage.getItem("accessToken"),
+        },
+      })
       .then((res) => {
         if (res.data.accountExists) {
           setexists(true);

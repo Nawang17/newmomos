@@ -50,7 +50,7 @@ const NewPosts = () => {
             .then((res) => {
               axios
                 .post(
-                  "https://momofirstapi.herokuapp.com/Post/addPost",
+                  "http://localhost:3001/Post/addPost",
 
                   {
                     post: text,
@@ -85,7 +85,7 @@ const NewPosts = () => {
 
           axios
             .post(
-              "https://momofirstapi.herokuapp.com/Post/addPost",
+              "http://localhost:3001/Post/addPost",
               {
                 post: text,
                 postImage: null,

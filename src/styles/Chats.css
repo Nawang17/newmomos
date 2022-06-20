@@ -1,0 +1,36 @@
+.Chats {
+  margin-bottom: 63px;
+}
+.Chat {
+  padding: 15px 18px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.Chat:hover {
+  background-color: #f5f5f5;
+}
+.Chat > img {
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+}
+.ChatRight {
+  width: 100%;
+}
+.chatuser {
+  font-weight: bold;
+}
+.chatdate {
+  font-size: 14px;
+  color: grey;
+}
+.ChatRightBottom {
+  color: grey;
+}
+.ChatRightTop {
+  display: flex;
+  justify-content: space-between;
+}

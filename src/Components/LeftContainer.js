@@ -1,5 +1,5 @@
 import React from "react";
-import { Bike, Bell, Logout } from "tabler-icons-react";
+import { Bike, Bell, Logout, Mail } from "tabler-icons-react";
 import { Modal, Button } from "@mantine/core";
 import "../styles/LeftContainer.css";
 import { AiOutlineHome } from "react-icons/ai";
@@ -38,7 +38,12 @@ const LeftContainer = () => {
           </div>
 
           <NewPosts />
-
+          <div onClick={() => history.push("/Messages")} className="lnavItem">
+            <div className="lnavIcon">
+              <Mail size={26} />
+            </div>
+            <div className="lnavText">Messages</div>
+          </div>
           <div
             onClick={() => history.push("/Notifications")}
             className="lnavItem"
