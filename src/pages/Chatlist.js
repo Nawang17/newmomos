@@ -22,6 +22,7 @@ const Chatlist = () => {
   const { setpath, UserInfo } = useContext(UserContext);
   const [newroom, setNewroom] = useState(false);
   useEffect(() => {
+    setsearch("");
     if (UserInfo.loginStatus) {
       axios
         .get(`https://momofirstapi.herokuapp.com/Room/getRooms`, {
@@ -135,7 +136,10 @@ const Chatlist = () => {
       <Modal
         overflow="inside"
         opened={opened}
-        onClose={() => setOpened(false)}
+        onClose={() => {
+          setOpened(false);
+          setsearch("");
+        }}
         title="New message"
       >
         <div style={{ position: "sticky", top: "0" }}>
