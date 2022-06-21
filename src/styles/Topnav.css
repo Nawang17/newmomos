@@ -27,7 +27,15 @@
   width: 30px;
   border-radius: 50%;
 }
-/* @media only screen and (min-width: 600px) {
+.searchuser {
+  padding: 10px;
+}
+.searchuser:hover {
+  cursor: pointer;
+  background-color: #f5f5f5;
+}
+/* @me
+dia only screen and (min-width: 600px) {
   .topnav {
     display: none;
   }

@@ -1,7 +1,7 @@
 import axios from "axios";
-//http://localhost:3001/
-//http://localhost:3001/
-const url = "http://localhost:3001/";
+//https://momofirstapi.herokuapp.com/
+//https://momofirstapi.herokuapp.com/
+const url = "https://momofirstapi.herokuapp.com/";
 const token = localStorage.getItem("accessToken");
 
 export const validUser = () => {
@@ -92,7 +92,7 @@ export const Reply = (
     } else {
       axios
         .post(
-          "http://localhost:3001/Comment/addComment",
+          "https://momofirstapi.herokuapp.com/Comment/addComment",
           {
             PostId: id,
             replyText: PostText,

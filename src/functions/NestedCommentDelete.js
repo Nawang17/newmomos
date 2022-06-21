@@ -10,7 +10,7 @@ export const NestedCommentDelete = (
   setdeleting(false);
   axios
     .delete(
-      `http://localhost:3001/NestedComments/deleteComment/${postId}/${Username}`,
+      `https://momofirstapi.herokuapp.com/NestedComments/deleteComment/${postId}/${Username}`,
 
       {
         headers: {

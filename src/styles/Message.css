@@ -99,7 +99,6 @@
   display: flex;
   padding: 10px;
   border-top: var(--border);
-  background: #eee;
 }
 .msger-inputarea * {
   padding: 10px;
@@ -109,7 +108,7 @@
 }
 .msger-input {
   flex: 1;
-  background: #ddd;
+  background: rgb(240, 239, 239);
 }
 .msger-send-btn {
   margin-left: 10px;

@@ -15,7 +15,7 @@ const CommentMenu = ({ Username, postId, setComments, reply, setdeleting }) => {
     if (UserInfo.loginStatus) {
       axios
         .post(
-          "http://localhost:3001/Profile/follow",
+          "https://momofirstapi.herokuapp.com/Profile/follow",
           {
             following: Username,
           },

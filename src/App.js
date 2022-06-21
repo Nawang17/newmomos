@@ -48,7 +48,7 @@ function App() {
         });
         axios
           .get(
-            `http://localhost:3001/Profile/followingData/${res.data.username}`
+            `https://momofirstapi.herokuapp.com/Profile/followingData/${res.data.username}`
           )
           .then((res) => {
             setFollowing(res.data.following);
@@ -116,7 +116,11 @@ function App() {
                 <Route path="/Profile/:username" exact component={Profile} />
                 <Route path="/About" exact component={About} />
                 <Route path="/Messages" exact component={Chatlist} />
-                <Route path="/Message/:username" exact component={Message} />
+                <Route
+                  path="/Message/:username/:room"
+                  exact
+                  component={Message}
+                />
               </Switch>
               <Bottomnav />
             </div>
