@@ -11,7 +11,7 @@
   flex-flow: column wrap;
   justify-content: space-between;
   width: 100%;
-  height: 70vh;
+  height: 90vh;
 }
 
 .msger-header {
@@ -95,6 +95,10 @@
 }
 
 .msger-inputarea {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
   display: flex;
   padding: 10px;
   border-top: var(--border);
