@@ -7,6 +7,7 @@ import ScrollToBottom from "react-scroll-to-bottom";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import moment from "moment";
+import { Input, Button } from "@mantine/core";
 const Message = () => {
   const history = useHistory();
   const { setpath, UserInfo } = useContext(UserContext);
@@ -124,21 +125,38 @@ const Message = () => {
           </div> */}
           </ScrollToBottom>
 
-          <form className="msger-inputarea">
-            <input
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              type="text"
-              className="msger-input"
-              placeholder="Enter your message..."
-            />
-            <button
-              onClick={addnewchat}
-              type="submit"
-              className="msger-send-btn"
+          <form
+            style={{ paddingLeft: "0px", paddingRight: "0px" }}
+            className="msger-inputarea"
+          >
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                width: "100%",
+                gap: "2px",
+              }}
             >
-              Send
-            </button>
+              <Input
+                value={message}
+                style={{
+                  width: "100%",
+
+                  padding: "0px",
+                }}
+                onChange={(e) => setMessage(e.target.value)}
+                variant="default"
+                placeholder="Enter your message..."
+              />
+              <Button
+                variant="light"
+                style={{ borderRadius: "5px" }}
+                onClick={addnewchat}
+                type="submit"
+              >
+                Send
+              </Button>
+            </div>
           </form>
         </section>
       ) : (

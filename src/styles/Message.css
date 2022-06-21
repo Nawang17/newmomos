@@ -99,6 +99,7 @@
   display: flex;
   padding: 10px;
   border-top: var(--border);
+  margin-bottom: 30px;
 }
 .msger-inputarea * {
   padding: 10px;
