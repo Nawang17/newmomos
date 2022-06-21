@@ -1,3 +1,3 @@
 import { io } from "socket.io-client";
 
-export const Socketint = io("http://localhost:3001");
+export const Socketint = io("https://momofirstapi.herokuapp.com/");
