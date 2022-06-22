@@ -43,8 +43,7 @@ const Message = () => {
   }, [socket]);
 
   const [message, setMessage] = useState("");
-  const addnewchat = (e) => {
-    e.preventDefault();
+  const addnewchat = () => {
     if (message.length > 0) {
       setMessages((prev) => [
         ...prev,
@@ -124,11 +123,17 @@ const Message = () => {
               }}
               value={message}
               onKeyPress={(event) => {
-                event.key === "Enter" && addnewchat(event);
+                event.key === "Enter" && addnewchat();
               }}
               variant="default"
             />
-            <Button>Send</Button>
+            <Button
+              onClick={() => {
+                addnewchat();
+              }}
+            >
+              Send
+            </Button>
           </div>
         </div>
       </div>
