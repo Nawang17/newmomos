@@ -82,88 +82,56 @@ const Message = () => {
 
   return (
     <>
-      {UserInfo.loginStatus ? (
-        <section className="msger">
-          <ScrollToBottom className="msger-chat">
-            {messages.map((val) => {
+      <div className="chat-window">
+        <div className="chat-header">
+          <p>Live Chat</p>
+        </div>
+        <div className="chat-body">
+          <ScrollToBottom className="message-container">
+            {messages.map((messageContent) => {
               return (
                 <div
-                  key={val.id}
-                  className={
-                    val.GoogleAuth.Username === UserInfo.userName
-                      ? "msg right-msg"
-                      : "msg left-msg"
+                  className="message"
+                  id={
+                    UserInfo.userName !== messageContent.GoogleAuth.Username
+                      ? "you"
+                      : "other"
                   }
                 >
-                  <div className="msg-img">
-                    <img src={val.GoogleAuth.Image} alt="" />
-                  </div>
-
-                  <div className="msg-bubble">
-                    <div className="msg-bubbletop">
-                      <div className="msg-info"></div>
-
-                      <div className="msg-text">{val.message}</div>
+                  <div>
+                    <div className="message-content">
+                      <p>{messageContent.message}</p>
                     </div>
-                    <div className="msg-info-time">
-                      {moment(val.createdAt).format("LT")}
+                    <div className="message-meta">
+                      <p id="time">
+                        {moment(messageContent.createdAt).format("LT")}
+                      </p>
+                      {/* <p id="author">{messageContent.GoogleAuth.Username}</p> */}
                     </div>
                   </div>
                 </div>
               );
             })}
-
-            {/* <div className="msg right-msg">
-            <div className="msg-bubble">
-              <div className="msg-bubbletop">
-                <div className="msg-text">
-                  You can change your name in JS section!
-                </div>
-              </div>
-              <div className="msg-info-time">12:46</div>
-            </div>
-          </div> */}
           </ScrollToBottom>
-
-          <form
-            style={{ paddingLeft: "0px", paddingRight: "0px" }}
-            className="msger-inputarea"
-          >
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                width: "100%",
-                gap: "2px",
-              }}
-            >
-              <Input
-                value={message}
-                style={{
-                  width: "100%",
-
-                  padding: "0px",
-                }}
-                onChange={(e) => setMessage(e.target.value)}
-                variant="default"
-                placeholder="Enter your message..."
-              />
-              <Button
-                variant="light"
-                style={{ borderRadius: "5px" }}
-                onClick={addnewchat}
-                type="submit"
-              >
-                Send
-              </Button>
-            </div>
-          </form>
-        </section>
-      ) : (
-        <div style={{ padding: "15px 18px" }}>
-          Please login to message other users
         </div>
-      )}
+        <div className="">
+          <div style={{ display: "flex", gap: "5px", padding: "10px " }}>
+            <Input
+              style={{ width: "100%" }}
+              placeholder="Send a message..."
+              onChange={(event) => {
+                setMessage(event.target.value);
+              }}
+              value={message}
+              onKeyPress={(event) => {
+                event.key === "Enter" && addnewchat(event);
+              }}
+              variant="default"
+            />
+            <Button>Send</Button>
+          </div>
+        </div>
+      </div>
     </>
   );
 };

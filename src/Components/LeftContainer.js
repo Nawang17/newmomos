@@ -38,12 +38,12 @@ const LeftContainer = () => {
           </div>
 
           <NewPosts />
-          {/* <div onClick={() => history.push("/Messages")} className="lnavItem">
+          <div onClick={() => history.push("/Messages")} className="lnavItem">
             <div className="lnavIcon">
               <Mail size={26} />
             </div>
             <div className="lnavText">Messages</div>
-          </div> */}
+          </div>
           <div
             onClick={() => history.push("/Notifications")}
             className="lnavItem"

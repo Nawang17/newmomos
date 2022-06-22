@@ -29,22 +29,22 @@ const Bottomnav = () => {
           <RiHeart3Line size={22} />
         </div>
 
-        <div
+        {/* <div
           onClick={() => {
             history.push("/About");
           }}
           className="navItem"
         >
           <HiMenuAlt4 size={22} />
-        </div>
-        {/* <div
+        </div> */}
+        <div
           onClick={() => {
             history.push("/Messages");
           }}
           className="navItem"
         >
           <Mail size={22} />
-        </div> */}
+        </div>
       </div>
     </div>
   );
