@@ -77,56 +77,63 @@ const Chatlist = () => {
               New message
             </Button>
           </div>
-          {chat.map((val, id) => {
-            return (
-              <div
-                key={val.id}
-                onClick={() => {
-                  history.push({
-                    pathname: `/Message/${
+          {chat
+            .sort((a, b) => {
+              return (
+                b.Messages[b.Messages.length - 1].id -
+                a.Messages[a.Messages.length - 1].id
+              );
+            })
+            .map((val, id) => {
+              return (
+                <div
+                  key={val.id}
+                  onClick={() => {
+                    history.push({
+                      pathname: `/Message/${
+                        val.user1info.Username === UserInfo.userName
+                          ? val.user2info.Username
+                          : val.user1info.Username
+                      }/${val.id}`,
+                      state: {
+                        messages: val.Messages,
+                      },
+                    });
+                  }}
+                  className="Chat"
+                >
+                  <img
+                    src={
                       val.user1info.Username === UserInfo.userName
-                        ? val.user2info.Username
-                        : val.user1info.Username
-                    }/${val.id}`,
-                    state: {
-                      messages: val.Messages,
-                    },
-                  });
-                }}
-                className="Chat"
-              >
-                <img
-                  src={
-                    val.user1info.Username === UserInfo.userName
-                      ? val.user2info.Image
-                      : val.user1info.Image
-                  }
-                  alt=""
-                />
-                <div className="ChatRight">
-                  <div className="ChatRightTop">
-                    <div className="chatuser">
-                      {val.user1info.Username === UserInfo.userName
-                        ? val.user2info.Username
-                        : val.user1info.Username}
+                        ? val.user2info.Image
+                        : val.user1info.Image
+                    }
+                    alt=""
+                  />
+                  <div className="ChatRight">
+                    <div className="ChatRightTop">
+                      <div className="chatuser">
+                        {val.user1info.Username === UserInfo.userName
+                          ? val.user2info.Username
+                          : val.user1info.Username}
+                      </div>
+                      <div className="chatdate">
+                        {val.Messages.length > 0
+                          ? moment(val.Messages.slice(-1)[0].createdAt).format(
+                              "M/D/YY"
+                            )
+                          : ""}
+                      </div>
                     </div>
-                    <div className="chatdate">
+                    <div className="ChatRightBottom">
                       {val.Messages.length > 0
-                        ? moment(val.Messages.slice(-1)[0].createdAt).format(
-                            "M/D/YY"
-                          )
-                        : ""}
+                        ? val.Messages.slice(-1)[0].message
+                        : "send a message"}
                     </div>
-                  </div>
-                  <div className="ChatRightBottom">
-                    {val.Messages.length > 0
-                      ? val.Messages.slice(-1)[0].message
-                      : "send a message"}
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
         </div>
       ) : (
         <div style={{ padding: "15px 18px" }}>
