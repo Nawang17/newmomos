@@ -46,8 +46,6 @@ const Chatlist = () => {
           setusers(response.data.users);
           console.log(response.data.users);
         });
-    } else {
-      history.push("/");
     }
 
     setpath("Messages");
@@ -136,9 +134,7 @@ const Chatlist = () => {
             })}
         </div>
       ) : (
-        <div style={{ padding: "15px 18px" }}>
-          Please login to message other users
-        </div>
+        <div style={{ padding: "15px 18px" }}>Login to message other users</div>
       )}
       <Modal
         overflow="inside"
