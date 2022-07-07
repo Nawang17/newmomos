@@ -205,6 +205,8 @@
 }
 
 #you .message-content {
+  background: #ececec;
+  color: black;
   justify-content: flex-start;
 }
 
