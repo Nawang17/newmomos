@@ -86,9 +86,7 @@ const Message = () => {
     <>
       {UserInfo.loginStatus ? (
         <div className="chat-window">
-          <div className="chat-header">
-            <p>Live Chat</p>
-          </div>
+          <div className="chat-header"></div>
 
           <div
             style={{
@@ -117,8 +115,9 @@ const Message = () => {
                             "MMMM Do"
                           ) === moment(new Date()).format("MMMM Do")
                             ? moment(messageContent.createdAt).format("LT")
-                            : moment(messageContent.createdAt).format("M/D/YY")}
-                          {/* {moment(messageContent.createdAt).format("LT")} */}
+                            : moment(messageContent.createdAt).format(
+                                "M/D/YY "
+                              )}
                         </p>
                       </div>
                     </div>

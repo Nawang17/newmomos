@@ -49,7 +49,7 @@ const Chatlist = () => {
     }
 
     setpath("Messages");
-  }, [newroom]);
+  }, [newroom, UserInfo.loginStatus]);
   return (
     <>
       {UserInfo.loginStatus ? (
@@ -160,6 +160,7 @@ const Chatlist = () => {
           }}
         >
           {users
+            .sort(() => Math.random() - 0.5)
             .filter((val) => {
               return val.Username.toLowerCase().includes(search.toLowerCase());
             })
