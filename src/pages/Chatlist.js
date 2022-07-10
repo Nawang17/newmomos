@@ -78,8 +78,8 @@ const Chatlist = () => {
           {chat
             .sort((a, b) => {
               return (
-                b.Messages[b.Messages.length - 1].id -
-                a.Messages[a.Messages.length - 1].id
+                b.Messages[b.Messages.length - 1]?.id -
+                a.Messages[a.Messages.length - 1]?.id
               );
             })
             .map((val, id) => {
