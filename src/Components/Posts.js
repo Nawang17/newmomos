@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Message2 } from "tabler-icons-react";
 import "../styles/Posts.css";
 import PostMenu from "./PostMenu";
@@ -8,9 +8,12 @@ import { LikePost } from "../functions/LikePost";
 import moment from "moment";
 import { MdVerified } from "react-icons/md";
 import { RiHeart3Line, RiHeart3Fill } from "react-icons/ri";
+import { Modal } from "@mantine/core";
 const Posts = ({ posts, LikedPosts, setPosts, setLikePosts }) => {
   const { UserInfo, setError, setErrorMessage } = useContext(UserContext);
   const history = useHistory();
+  const [opened, setOpened] = useState(false);
+  const [modalimg, setmodalimg] = useState("");
 
   return (
     <>
@@ -54,7 +57,13 @@ const Posts = ({ posts, LikedPosts, setPosts, setLikePosts }) => {
 
               <div className="postText">{value.postText}</div>
               {value.postImage && (
-                <div className="postImagediv">
+                <div
+                  onClick={() => {
+                    setmodalimg(value.postImage);
+                    setOpened(true);
+                  }}
+                  className="postImagediv"
+                >
                   <img
                     loading="lazy"
                     className="postImage"
@@ -107,6 +116,26 @@ const Posts = ({ posts, LikedPosts, setPosts, setLikePosts }) => {
           </div>
         );
       })}
+
+      <Modal
+        padding={0}
+        size="lg"
+        withCloseButton={false}
+        opened={opened}
+        onClose={() => {
+          setOpened(false);
+          setmodalimg("");
+        }}
+      >
+        <div style={{ backgroundColor: "rgba(0, 0, 0, 0.4)" }}>
+          <img
+            loading="lazy"
+            style={{ width: "100%", height: "auto" }}
+            src={modalimg}
+            alt=""
+          />
+        </div>
+      </Modal>
     </>
   );
 };
