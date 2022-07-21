@@ -39,6 +39,7 @@
   font-size: 12px;
 }
 .postText {
+  line-height: 1.5;
 }
 .postImagediv {
   padding-top: 5px;
